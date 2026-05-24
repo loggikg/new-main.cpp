@@ -2479,126 +2479,63 @@ public slots:
                     hard_fail = true; return 0;
                 }
                 if (r.status_code == 403) {
-                    // ── DIJAGNOSTIKA: loguj sve headere koje server šalje uz 403 ──
-                    qDebug() << "[403 DIAG] Server=" << base
-                             << "url=" << apiUrl.left(80);
-                    for (const auto &hdr : r.header)
-                        qDebug() << "  [403 HDR]"
-                                 << QString::fromStdString(hdr.first)
-                                 << ":" << QString::fromStdString(hdr.second);
-                    qDebug() << "  [403 BODY]" << QString::fromStdString(r.text).left(200);
+    // ✅ PRVO: Provjeri da li je CF WAF/IP ban (CF-RAY header)
+    bool hasCfRay = r.header.count("CF-RAY") > 0 || r.header.count("cf-ray") > 0;
+    bool hasCfServer = false;
+    if (r.header.count("Server") > 0)
+        hasCfServer = r.header.at("Server").find("cloudflare") != std::string::npos;
+    if (r.header.count("server") > 0)
+        hasCfServer = hasCfServer || r.header.at("server").find("cloudflare") != std::string::npos;
 
-                    // ── Proveri da li je CF WAF/IP ban (CF-RAY header prisutan) ──
-                    bool hasCfRay = r.header.count("CF-RAY") > 0 ||
-                                    r.header.count("cf-ray") > 0;
-                    bool hasCfServer = false;
-                    if (r.header.count("Server") > 0)
-                        hasCfServer = r.header.at("Server").find("cloudflare") != std::string::npos;
-                    if (r.header.count("server") > 0)
-                        hasCfServer = hasCfServer || r.header.at("server").find("cloudflare") != std::string::npos;
-
-                    std::string bodyLow = r.text;
-                    std::transform(bodyLow.begin(), bodyLow.end(), bodyLow.begin(), ::tolower);
-                    bool isIpBan = bodyLow.find("not authorized") != std::string::npos ||
-                                   bodyLow.find("forbidden")      != std::string::npos ||
-                                   bodyLow.find("banned")         != std::string::npos ||
-                                   bodyLow.find("blocked")        != std::string::npos;
-                    bool isAuthFail = bodyLow.find("auth") != std::string::npos &&
-                                      bodyLow.find("0")    != std::string::npos;
-                    qDebug() << "  [403 CLASSIFY] isIpBan=" << isIpBan
-         << "isAuthFail=" << isAuthFail
-         << "hasCfRay=" << hasCfRay
-         << "hasCfServer=" << hasCfServer;
-{
-    auto* _rt403diag = getReactThrottle(base);
-    std::lock_guard<std::mutex> _lk403diag(_rt403diag->mx);
-    qDebug() << "  [403 RATE_STATE] delayMs=" << _rt403diag->delayMs
-             << "minDelayMs=" << _rt403diag->minDelayMs
-             << "total429=" << _rt403diag->total429
-             << "total403=" << _rt403diag->total403
-             << "isAggressive=" << _rt403diag->isAggressive
-             << "consecFail=" << _rt403diag->consecFail;
-    qDebug() << "  [403 XUI_STATE] episodeCount=" << g_xuiEpisodeCount.value(base, 0)
-             << "debugCount=" << g_xuiDebugCount.value(base, 0)
-             << "inDebugMode=" << isXuiDebugMode(base);
-}
-{
-    std::lock_guard<std::mutex> _lkslots(g_serverSemMutex);
-    qDebug() << "  [403 SLOTS] activeSlots=" << g_serverActiveCalls.value(base, 0);
-}
-{
-    std::lock_guard<std::mutex> _lktcp(g_tcpDeadMutex);
-    qDebug() << "  [403 TCP] consecTimeouts=" << g_serverConsecTimeouts.value(base, 0);
-}
-qDebug() << "  [403 VERDICT] Nginx rate-limit — analiza stanja u trenutku bana";
-
-                    // CF 403 = moja IP je blokirana, ali SERVER JE ŽIV
-                    // Ne postavljaj hard_fail — samo označi kao "blocked" i preskoči
-                    // Ovo se dešava kada Cloudflare blokira naš IP ali ne i server
-                    if (hasCfRay || hasCfServer) {
-                        qDebug() << "[403 CF-BAN] Cloudflare IP ban na" << base
-                                 << "→ tretiramo kao blocked, ne hard_fail";
-                        {
-                            std::lock_guard<std::mutex> lk(m_cfBanMutex);
-                            int cnt = ++m_cfBanCount[base];
-                            if (cnt == CF_BAN_THRESHOLD && !m_cfBanReported.contains(base)) {
-                                m_cfBanReported.insert(base);
-                                QString now = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
-                                QString report = QString(
-                                    "Server: %1\nStatus: 🔒 CLOUDFLARE IP BAN (HTTP 403)\n"
-                                    "Vreme: %2\n"
-                                    "BAN IP — Cloudflare blokira tvoju IP adresu za ovaj server.\n"
-                                    "Koristi VPN dugme za proveru sa drugom IP adresom."
-                                ).arg(base, now);
-                                emit serverBanDetected(base, report);
-                        }
-                    }
-                    return 0;
-                    }
-
-                    // Nginx 403 bez CF headera = privremeni rate-limit
-                    {
-                        auto* _rt403 = getReactThrottle(base);
-                        {
-                            std::lock_guard<std::mutex> _lk403(_rt403->mx);
-                            _rt403->isAggressive = true;
-                            _rt403->delayMs = qMin(_rt403->maxDelayMs, _rt403->delayMs + 3000);
-                            _rt403->minDelayMs = qMax(_rt403->minDelayMs, 1500);
-                        }
-                        bool _shouldReport = false;
-                        {
-                            std::lock_guard<std::mutex> _lkn(m_nginxBanMutex);
-                            if (!m_nginxBanReported.contains(base)) {
-                                m_nginxBanReported.insert(base);
-                                _shouldReport = true;
-                            }
-                        }
-                        if (_shouldReport) {
-                            // Odredi pravi razlog 403
-                            QString _razlog;
-                            if (isXuiSlowServer(base)) {
-                                _razlog = "Razlog: Server je u XUI Debug Mode (overload).\n";
-                            } else {
-                                _razlog = "Server blokira IP adresu.\n";
-                            }
-                            QString _report = QString(
-                                "Server: %1\n"
-                                "Status: ⚠️ HTTP 403 — TRENUTNO SI BANOVAN!\n"
-                                "%2\n"
-                                "Skeniranje je automatski zaustavljeno."
-                            ).arg(base, _razlog);
-                            emit serverBanDetected(base, _report);
-                            // ODMAH STOPUJ — dalje skeniranje ovog servera nema smisla
-                            m_stopRequested.store(true, std::memory_order_release);
-                            qDebug() << "[403 NGINX BAN] Skeniranje ZAUSTAVLJENO zbog nginx bana na" << base;
+    // CF ban → hard_fail
+    if (hasCfRay || hasCfServer) {
+        qDebug() << "[403 CF-BAN] Cloudflare IP ban → hard_fail";
+        {
+            std::lock_guard<std::mutex> lk(m_cfBanMutex);
+            int cnt = ++m_cfBanCount[base];
+            if (cnt == CF_BAN_THRESHOLD && !m_cfBanReported.contains(base)) {
+                m_cfBanReported.insert(base);
+                QString now = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
+                QString report = QString(
+                    "Server: %1\nStatus: 🔒 CLOUDFLARE IP BAN (HTTP 403)\n"
+                    "Vreme: %2\n"
+                    "BAN IP — Cloudflare blokira tvoju IP adresu za ovaj server."
+                ).arg(base, now);
+                emit serverBanDetected(base, report);
+            }
+        }
         hard_fail = true;
         return 0;
     }
-    qDebug() << "[403 NGINX RATELIMIT] BAN detektovan na" << base
-             << "→ server preskocen";
+
+    // ✅ nginx 403 + PRAZAN body = rate-limit, NIJE hard_fail
+    if (r.text.empty() || r.text.size() < 200) {
+        qDebug() << "[403 NGINX] Prazan body → rate-limit, kratka pauza + retry";
+        {
+            auto* _rt403 = getReactThrottle(base);
+            {
+                std::lock_guard<std::mutex> _lk403(_rt403->mx);
+                _rt403->isAggressive = true;
+                _rt403->delayMs = qMin(_rt403->maxDelayMs, _rt403->delayMs + 3000);
+                _rt403->minDelayMs = qMax(_rt403->minDelayMs, 1500);
+            }
+        }
+        return 2;  // ← Retry, ne hard_fail!
+    }
+
+    // nginx 403 + sadržaj = provjeri šta piše
+    std::string bodyLow = r.text;
+    std::transform(bodyLow.begin(), bodyLow.end(), bodyLow.begin(), ::tolower);
+    if (bodyLow.find("blip") != std::string::npos) {
+        qDebug() << "[403 WAF] Blip detected → hard_fail";
+        hard_fail = true;
+        return 0;
+    }
+
+    // Default: rate-limit retry
+    qDebug() << "[403 NGINX] Sadržaj prisutan → rate-limit, retry";
+    return 2;
 }
-return 2; // retry — nije hard_fail
-                }
                     if (r.status_code == 521 || r.status_code == 522 ||
                     r.status_code == 530) {
                     qDebug() << "[CF-DETECT] Cloudflare status=" << r.status_code
@@ -2648,18 +2585,27 @@ return 2; // retry — nije hard_fail
                             return 0;  // Nema retry!
                         }
 
-                        // 🟡 Ako je text/html BEZ INVALID_CREDENTIALS → može biti Debug Mode
-                        if (bodyLow.find("xui.one") != std::string::npos ||
-                            bodyLow.find("debug mode") != std::string::npos) {
-                            qDebug() << "[API PARSE] 🟡 text/html + XUI.one → mogući Debug Mode";
-                            recordXuiDebug(base);
-                            return 3;  // DM signal — NE čekamo, NE retryujemo
-                        }
+                        // ❌ PRVO provjeri INVALID_CREDENTIALS — nikakav retry!
+if (bodyLow.find("invalid_credentials") != std::string::npos ||
+    bodyLow.find("username or password is invalid") != std::string::npos ||
+    bodyLow.find("invalid account") != std::string::npos) {
+    qDebug() << "[API PARSE] ❌ text/html + INVALID_CREDENTIALS → hard_fail ODMAH";
+    hard_fail = true; 
+    return 0;
+}
 
-                        // text/html ali nije INVALID i nije Debug Mode → nepoznato
-                        qDebug() << "[API PARSE] ❓ text/html ali nije poznata greška → return 0";
-                        hard_fail = true;
-                        return 0;
+// 🟡 TEK SADA provjeri XUI Debug Mode (samo ako NEMA INVALID_CREDENTIALS)
+if (bodyLow.find("xui.one") != std::string::npos ||
+    bodyLow.find("debug mode") != std::string::npos) {
+    qDebug() << "[API PARSE] 🟡 text/html + XUI Debug Mode → retry signal";
+    recordXuiDebug(base);
+    return 3;
+}
+
+// text/html ali nije INVALID i nije Debug Mode → nepoznato
+qDebug() << "[API PARSE] ❓ text/html ali nije poznata greška";
+hard_fail = true;
+return 0;
                     }
                     
                     // ✅ Ako je nešto drugo (ne JSON, ne HTML) → pokušaj JSON parsirati (za sigurnost)
@@ -3316,40 +3262,40 @@ if (!parsedOk || added == 0) {
                     // 302 redirect = server živ, stream postoji ali zahteva redirect
                     // Ovo je normalno za XUI.one servere koji redirectuju na CDN
                     if (status == 302 || status == 301 || status == 307 || status == 308) {
-                        std::string location = r.header.count("Location") ? r.header.at("Location") : "";
-                        if (!location.empty() && location.find("http") == 0) {
-                            // Prati redirect — jedan korak
-                            try {
-                                std::string body2; bool stopped2 = false;
-                                cpr::Response r2 = cpr::Get(
-                                    cpr::Url{location},
-                                    cpr::Timeout{m_stopRequested.load() ? 300 : streamTimeoutMs},
-                                    cpr::VerifySsl{false},
-                                    cpr::Header{{"User-Agent", headers["User-Agent"].toStdString()},
-                                                {"Accept", "*/*"}, {"Connection", "keep-alive"}},
-                                    cpr::WriteCallback{[&](const std::string_view d, intptr_t) -> bool {
-                                        body2.append(d.data(), d.size());
-                                        if (body2.size() >= 8192) { stopped2 = true; return false; }
-                                        return true;
-                                    }}
-                                );
-                                int s2 = r2.status_code;
-                                if (stopped2 && s2 == 0) s2 = 200;
-                                qDebug() << "[STREAM REDIRECT]" << QString::fromStdString(location).left(80)
-                                         << "status=" << s2 << "bytes=" << body2.size();
-                                if (s2 == 200 || s2 == 206 || stopped2) {
-                                    std::string ct2 = r2.header.count("Content-Type") ? r2.header.at("Content-Type") : "";
-                                    std::transform(ct2.begin(), ct2.end(), ct2.begin(), ::tolower);
-                                    if (isRealMediaBody(body2, ct2)) {
-                                    return fillResult();
-                                }
-                                }
-                            } catch (...) {}
-                        }
-                        // Redirect bez Location ili redirect ne radi — tretiramo kao server živ
-                        // Ali ne možemo potvrditi stream, nastavljamo sa sledećim kanalom
-                        continue;
-                    }
+    std::string location = r.header.count("Location") ? r.header.at("Location") : "";
+    if (!location.empty() && location.find("http") == 0) {
+        qDebug() << "[STREAM REDIRECT] Pratim:" << QString::fromStdString(location).left(80);
+        try {
+            std::string body2; bool stopped2 = false;
+            cpr::Response r2 = cpr::Get(
+                cpr::Url{location},
+                cpr::Timeout{m_stopRequested.load() ? 300 : streamTimeoutMs},
+                cpr::VerifySsl{false},
+                cpr::Header{{"User-Agent", headers["User-Agent"].toStdString()},
+                            {"Accept", "*/*"}, {"Connection", "keep-alive"}},
+                cpr::WriteCallback{[&](const std::string_view d, intptr_t) -> bool {
+                    body2.append(d.data(), d.size());
+                    if (body2.size() >= 8192) { stopped2 = true; return false; }
+                    return true;
+                }}
+            );
+            int s2 = r2.status_code;
+            if (stopped2 && s2 == 0) s2 = 200;
+            qDebug() << "[STREAM REDIRECT CDN] status=" << s2 << "bytes=" << body2.size();
+            
+            if ((s2 == 200 || s2 == 206 || stopped2) && body2.size() >= 32) {
+                std::string ct2 = r2.header.count("Content-Type") ? r2.header.at("Content-Type") : "";
+                std::transform(ct2.begin(), ct2.end(), ct2.begin(), ::tolower);
+                if (isRealMediaBody(body2, ct2)) {
+                    xuiAnalyzerAfter(base, s2, false, (int)body2.size());
+                    resetXuiDebug(base);
+                    return fillResult();
+                }
+            }
+        } catch (...) {}
+    }
+    continue;
+}
                     if (status != 200 && status != 206) continue;
                     std::string ct = r.header.count("Content-Type") ? r.header.at("Content-Type") : "";
                     std::transform(ct.begin(), ct.end(), ct.begin(), ::tolower);
