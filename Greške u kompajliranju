@@ -1,0 +1,687 @@
+ *  Executing task: & 'E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\build_script.bat' 
+
+Konfigurisanje projekta...
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/msys64/ucrt64/bin/c++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Found WrapVulkanHeaders: C:/msys64/ucrt64/include
+-- Checking for modules 'libbrotlidec;libbrotlicommon'
+--   Found libbrotlidec, version 1.2.0
+--   Found libbrotlicommon, version 1.2.0
+-- Found Brotli (via pkg-config): C:/msys64/ucrt64/include (found version "1.2.0")
+-- Checking for module 'libidn2'
+--   Found libidn2, version 2.3.8
+-- Found Libidn2 (via pkg-config): C:/msys64/ucrt64/include (found version "2.3.8")
+-- Checking for module 'libpsl'
+--   Found libpsl, version 0.21.5
+-- Found Libpsl (via pkg-config): C:/msys64/ucrt64/include (found version "0.21.5")
+-- Checking for module 'libssh2'
+--   Found libssh2, version 1.11.1
+-- Found Libssh2 (via pkg-config): C:/msys64/ucrt64/include (found version "1.11.1")
+-- Checking for module 'libnghttp2'
+--   Found libnghttp2, version 1.68.0
+-- Found NGHTTP2 (via pkg-config): C:/msys64/ucrt64/include (found version "1.68.0")
+-- Checking for module 'libnghttp3'
+--   Found libnghttp3, version 1.15.0
+-- Found NGHTTP3 (via pkg-config): C:/msys64/ucrt64/include (found version "1.15.0")
+-- Checking for module 'libngtcp2'
+--   Found libngtcp2, version 1.21.0
+-- Found NGTCP2 (via pkg-config): C:/msys64/ucrt64/include (found version "")
+-- Checking for module 'libzstd'
+--   Found libzstd, version 1.5.7
+-- Found Zstd (via pkg-config): C:/msys64/ucrt64/include (found version "1.5.7")
+-- Found CURL: C:/msys64/ucrt64/lib/cmake/CURL/CURLConfig.cmake (found version "8.19.0")
+-- Projekt OgiXworkMakeM3u uspešno konfigurisan.
+-- Configuring done (6.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: E:/IPTV/UTTILITIES/NOnAME/OgiXwork/VSS OgiXworkMakeM3u/OgiXworkMakeM3u_CPP/build
+Kompajliranje...
+[  0%] Built target OgiXworkMakeM3u_autogen_timestamp_deps
+[ 14%] Automatic MOC and UIC for target OgiXworkMakeM3u
+[ 14%] Built target OgiXworkMakeM3u_autogen
+[ 28%] Building CXX object CMakeFiles/OgiXworkMakeM3u.dir/OgiXworkMakeM3u_autogen/mocs_compilation.cpp.obj
+[ 42%] Building CXX object CMakeFiles/OgiXworkMakeM3u.dir/main.cpp.obj
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2871:9: error: expected unqualified-id before '{' token
+ 2871 |         {
+      |         ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2893:9: error: expected unqualified-id before 'if'
+ 2893 |         if (!usedMovieCache && !m3uUrl.isEmpty() && !m_stopRequested.load(std::memory_order_acquire)) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2958:9: error: expected unqualified-id before 'if'
+ 2958 |         if (m_stopRequested.load(std::memory_order_acquire)) return false;
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2960:9: error: expected unqualified-id before 'if'
+ 2960 |         if (m3u_timed_out && api_auth_ok) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2964:9: error: expected unqualified-id before 'if'
+ 2964 |         if (!m3u_raw.empty()) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3020:11: error: expected unqualified-id before 'else'
+ 3020 |         } else {
+      |           ^~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3026:9: error: expected unqualified-id before 'if'
+ 3026 |         if (testChannels.isEmpty() && api_auth_ok && !hard_fail &&
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3130:9: error: expected unqualified-id before 'if'
+ 3130 |         if (!testChannels.isEmpty()) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3330:9: error: expected unqualified-id before 'if'
+ 3330 |         if (debugModeStreams > 0 && debugModeStreams >= testedChannels && api_auth_ok) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3340:9: error: expected unqualified-id before 'for'
+ 3340 |         for (int test_id : {1, 100}) {
+      |         ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3340:36: error: expected unqualified-id before ')' token
+ 3340 |         for (int test_id : {1, 100}) {
+      |                                    ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3349:9: error: expected unqualified-id before 'for'
+ 3349 |         for (const QString &stream_url : direct_streams) {
+      |         ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3417:9: error: expected unqualified-id before 'if'
+ 3417 |         if (hardFailCount > 0 && hardFailCount == direct_streams.size()) return false;
+      |         ^~
+In file included from C:/msys64/ucrt64/include/qt6/QtCore/qglobal.h:47,
+                 from C:/msys64/ucrt64/include/qt6/QtGui/qtguiglobal.h:7,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/qtwidgetsglobal.h:8,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/qapplication.h:8,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/QApplication:1,
+                 from E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:1:
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3420:9: error: expected unqualified-id before 'nullptr'
+ 3420 |         qDebug() << QString("\n[FINAL_RESULT] ÔŁî %1 FAILED").arg(_dbg_username);
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3420:9: error: expected ')' before 'nullptr'
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3420:9: note: to match this '('
+ 3420 |         qDebug() << QString("\n[FINAL_RESULT] ÔŁî %1 FAILED").arg(_dbg_username);
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3422:30: error: 'base' has not been declared
+ 3422 |         xuiAnalyzerDumpFinal(base);
+      |                              ^~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3423:9: error: expected unqualified-id before 'return'
+ 3423 |         return false;
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3424:6: error: expected ';' after class definition
+ 3424 |     }
+      |      ^
+      |      ;
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2863:71: error: 'username' was not declared in this scope; did you mean 'rename'?
+ 2863 |         const QString _eu = QString::fromUtf8(QUrl::toPercentEncoding(username, "@._-"));
+      |                                                                       ^~~~~~~~
+      |                                                                       rename
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2864:71: error: 'password' was not declared in this scope
+ 2864 |         const QString _ep = QString::fromUtf8(QUrl::toPercentEncoding(password, "@._-!"));
+      |                                                                       ^~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2888:38: error: 'link' was not declared in this scope; did you mean 'unlink'?
+ 2888 |         QString m3uUrl = buildM3uUrl(link);
+      |                                      ^~~~
+      |                                      unlink
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3336:69: error: 'username' was not declared in this scope; did you mean 'rename'?
+ 3336 |         QString encUser = QString::fromUtf8(QUrl::toPercentEncoding(username, "@._-"));
+      |                                                                     ^~~~~~~~
+      |                                                                     rename
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3337:69: error: 'password' was not declared in this scope
+ 3337 |         QString encPass = QString::fromUtf8(QUrl::toPercentEncoding(password, "@._-!"));
+      |                                                                     ^~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3425:1: error: expected declaration before '}' token
+ 3425 | };
+      | ^
+mingw32-make[2]: *** [CMakeFiles\OgiXworkMakeM3u.dir\build.make:101: CMakeFiles/OgiXworkMakeM3u.dir/main.cpp.obj] Error 1
+mingw32-make[1]: *** [CMakeFiles\Makefile2:89: CMakeFiles/OgiXworkMakeM3u.dir/all] Error 2
+mingw32-make: *** [Makefile:90: all] Error 2
+Greska u kompajliranju!
+
+ *  The terminal process "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command & 'E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\build_script.bat'" terminated with exit code: 1. 
+ *  Terminal will be reused by tasks, press any key to close it. 
+
+ *  Executing task: & 'E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\build_script.bat' 
+
+Konfigurisanje projekta...
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/msys64/ucrt64/bin/c++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Found WrapVulkanHeaders: C:/msys64/ucrt64/include
+-- Checking for modules 'libbrotlidec;libbrotlicommon'
+--   Found libbrotlidec, version 1.2.0
+--   Found libbrotlicommon, version 1.2.0
+-- Found Brotli (via pkg-config): C:/msys64/ucrt64/include (found version "1.2.0")
+-- Checking for module 'libidn2'
+--   Found libidn2, version 2.3.8
+-- Found Libidn2 (via pkg-config): C:/msys64/ucrt64/include (found version "2.3.8")
+-- Checking for module 'libpsl'
+--   Found libpsl, version 0.21.5
+-- Found Libpsl (via pkg-config): C:/msys64/ucrt64/include (found version "0.21.5")
+-- Checking for module 'libssh2'
+--   Found libssh2, version 1.11.1
+-- Found Libssh2 (via pkg-config): C:/msys64/ucrt64/include (found version "1.11.1")
+-- Checking for module 'libnghttp2'
+--   Found libnghttp2, version 1.68.0
+-- Found NGHTTP2 (via pkg-config): C:/msys64/ucrt64/include (found version "1.68.0")
+-- Checking for module 'libnghttp3'
+--   Found libnghttp3, version 1.15.0
+-- Found NGHTTP3 (via pkg-config): C:/msys64/ucrt64/include (found version "1.15.0")
+-- Checking for module 'libngtcp2'
+--   Found libngtcp2, version 1.21.0
+-- Found NGTCP2 (via pkg-config): C:/msys64/ucrt64/include (found version "")
+-- Checking for module 'libzstd'
+--   Found libzstd, version 1.5.7
+-- Found Zstd (via pkg-config): C:/msys64/ucrt64/include (found version "1.5.7")
+-- Found CURL: C:/msys64/ucrt64/lib/cmake/CURL/CURLConfig.cmake (found version "8.19.0")
+-- Projekt OgiXworkMakeM3u uspešno konfigurisan.
+-- Configuring done (13.6s)
+-- Generating done (0.5s)
+-- Build files have been written to: E:/IPTV/UTTILITIES/NOnAME/OgiXwork/VSS OgiXworkMakeM3u/OgiXworkMakeM3u_CPP/build
+Kompajliranje...
+[  0%] Built target OgiXworkMakeM3u_autogen_timestamp_deps
+[ 14%] Automatic MOC and UIC for target OgiXworkMakeM3u
+[ 14%] Built target OgiXworkMakeM3u_autogen
+[ 28%] Building CXX object CMakeFiles/OgiXworkMakeM3u.dir/OgiXworkMakeM3u_autogen/mocs_compilation.cpp.obj
+[ 42%] Building CXX object CMakeFiles/OgiXworkMakeM3u.dir/main.cpp.obj
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2912:9: error: expected unqualified-id before '{' token
+ 2912 |         {
+      |         ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2934:9: error: expected unqualified-id before 'if'
+ 2934 |         if (!usedMovieCache && !m3uUrl.isEmpty() && !m_stopRequested.load(std::memory_order_acquire)) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2999:9: error: expected unqualified-id before 'if'
+ 2999 |         if (m_stopRequested.load(std::memory_order_acquire)) return false;
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3001:9: error: expected unqualified-id before 'if'
+ 3001 |         if (m3u_timed_out && api_auth_ok) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3005:9: error: expected unqualified-id before 'if'
+ 3005 |         if (!m3u_raw.empty()) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3061:11: error: expected unqualified-id before 'else'
+ 3061 |         } else {
+      |           ^~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3067:9: error: expected unqualified-id before 'if'
+ 3067 |         if (testChannels.isEmpty() && api_auth_ok && !hard_fail &&
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3171:9: error: expected unqualified-id before 'if'
+ 3171 |         if (!testChannels.isEmpty()) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3371:9: error: expected unqualified-id before 'if'
+ 3371 |         if (debugModeStreams > 0 && debugModeStreams >= testedChannels && api_auth_ok) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3381:9: error: expected unqualified-id before 'for'
+ 3381 |         for (int test_id : {1, 100}) {
+      |         ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3381:36: error: expected unqualified-id before ')' token
+ 3381 |         for (int test_id : {1, 100}) {
+      |                                    ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3390:9: error: expected unqualified-id before 'for'
+ 3390 |         for (const QString &stream_url : direct_streams) {
+      |         ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3458:9: error: expected unqualified-id before 'if'
+ 3458 |         if (hardFailCount > 0 && hardFailCount == direct_streams.size()) return false;
+      |         ^~
+In file included from C:/msys64/ucrt64/include/qt6/QtCore/qglobal.h:47,
+                 from C:/msys64/ucrt64/include/qt6/QtGui/qtguiglobal.h:7,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/qtwidgetsglobal.h:8,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/qapplication.h:8,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/QApplication:1,
+                 from E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:1:
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3461:9: error: expected unqualified-id before 'nullptr'
+ 3461 |         qDebug() << QString("\n[FINAL_RESULT] ÔŁî %1 FAILED").arg(_dbg_username);
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3461:9: error: expected ')' before 'nullptr'
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3461:9: note: to match this '('
+ 3461 |         qDebug() << QString("\n[FINAL_RESULT] ÔŁî %1 FAILED").arg(_dbg_username);
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3463:30: error: 'base' has not been declared
+ 3463 |         xuiAnalyzerDumpFinal(base);
+      |                              ^~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3464:9: error: expected unqualified-id before 'return'
+ 3464 |         return false;
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3465:6: error: expected ';' after class definition
+ 3465 |     }
+      |      ^
+      |      ;
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2904:71: error: 'username' was not declared in this scope; did you mean 'rename'?
+ 2904 |         const QString _eu = QString::fromUtf8(QUrl::toPercentEncoding(username, "@._-"));
+      |                                                                       ^~~~~~~~
+      |                                                                       rename
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2905:71: error: 'password' was not declared in this scope
+ 2905 |         const QString _ep = QString::fromUtf8(QUrl::toPercentEncoding(password, "@._-!"));
+      |                                                                       ^~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2929:38: error: 'link' was not declared in this scope; did you mean 'unlink'?
+ 2929 |         QString m3uUrl = buildM3uUrl(link);
+      |                                      ^~~~
+      |                                      unlink
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3377:69: error: 'username' was not declared in this scope; did you mean 'rename'?
+ 3377 |         QString encUser = QString::fromUtf8(QUrl::toPercentEncoding(username, "@._-"));
+      |                                                                     ^~~~~~~~
+      |                                                                     rename
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3378:69: error: 'password' was not declared in this scope
+ 3378 |         QString encPass = QString::fromUtf8(QUrl::toPercentEncoding(password, "@._-!"));
+      |                                                                     ^~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3466:1: error: expected declaration before '}' token
+ 3466 | };
+      | ^
+mingw32-make[2]: *** [CMakeFiles\OgiXworkMakeM3u.dir\build.make:101: CMakeFiles/OgiXworkMakeM3u.dir/main.cpp.obj] Error 1
+mingw32-make[1]: *** [CMakeFiles\Makefile2:89: CMakeFiles/OgiXworkMakeM3u.dir/all] Error 2
+mingw32-make: *** [Makefile:90: all] Error 2
+Greska u kompajliranju!
+
+ *  The terminal process "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command & 'E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\build_script.bat'" terminated with exit code: 1. 
+ *  Terminal will be reused by tasks, press any key to close it. 
+
+ *  Executing task: & 'E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\build_script.bat' 
+
+Konfigurisanje projekta...
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/msys64/ucrt64/bin/c++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Found WrapVulkanHeaders: C:/msys64/ucrt64/include
+-- Checking for modules 'libbrotlidec;libbrotlicommon'
+--   Found libbrotlidec, version 1.2.0
+--   Found libbrotlicommon, version 1.2.0
+-- Found Brotli (via pkg-config): C:/msys64/ucrt64/include (found version "1.2.0")
+-- Checking for module 'libidn2'
+--   Found libidn2, version 2.3.8
+-- Found Libidn2 (via pkg-config): C:/msys64/ucrt64/include (found version "2.3.8")
+-- Checking for module 'libpsl'
+--   Found libpsl, version 0.21.5
+-- Found Libpsl (via pkg-config): C:/msys64/ucrt64/include (found version "0.21.5")
+-- Checking for module 'libssh2'
+--   Found libssh2, version 1.11.1
+-- Found Libssh2 (via pkg-config): C:/msys64/ucrt64/include (found version "1.11.1")
+-- Checking for module 'libnghttp2'
+--   Found libnghttp2, version 1.68.0
+-- Found NGHTTP2 (via pkg-config): C:/msys64/ucrt64/include (found version "1.68.0")
+-- Checking for module 'libnghttp3'
+--   Found libnghttp3, version 1.15.0
+-- Found NGHTTP3 (via pkg-config): C:/msys64/ucrt64/include (found version "1.15.0")
+-- Checking for module 'libngtcp2'
+--   Found libngtcp2, version 1.21.0
+-- Found NGTCP2 (via pkg-config): C:/msys64/ucrt64/include (found version "")
+-- Checking for module 'libzstd'
+--   Found libzstd, version 1.5.7
+-- Found Zstd (via pkg-config): C:/msys64/ucrt64/include (found version "1.5.7")
+-- Found CURL: C:/msys64/ucrt64/lib/cmake/CURL/CURLConfig.cmake (found version "8.19.0")
+-- Projekt OgiXworkMakeM3u uspešno konfigurisan.
+-- Configuring done (6.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: E:/IPTV/UTTILITIES/NOnAME/OgiXwork/VSS OgiXworkMakeM3u/OgiXworkMakeM3u_CPP/build
+Kompajliranje...
+[  0%] Built target OgiXworkMakeM3u_autogen_timestamp_deps
+[ 14%] Automatic MOC and UIC for target OgiXworkMakeM3u
+[ 14%] Built target OgiXworkMakeM3u_autogen
+[ 28%] Building CXX object CMakeFiles/OgiXworkMakeM3u.dir/OgiXworkMakeM3u_autogen/mocs_compilation.cpp.obj
+[ 42%] Building CXX object CMakeFiles/OgiXworkMakeM3u.dir/main.cpp.obj
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2858:9: error: expected unqualified-id before '{' token
+ 2858 |         {
+      |         ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2880:9: error: expected unqualified-id before 'if'
+ 2880 |         if (!usedMovieCache && !m3uUrl.isEmpty() && !m_stopRequested.load(std::memory_order_acquire)) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2945:9: error: expected unqualified-id before 'if'
+ 2945 |         if (m_stopRequested.load(std::memory_order_acquire)) return false;
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2947:9: error: expected unqualified-id before 'if'
+ 2947 |         if (m3u_timed_out && api_auth_ok) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2951:9: error: expected unqualified-id before 'if'
+ 2951 |         if (!m3u_raw.empty()) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3007:11: error: expected unqualified-id before 'else'
+ 3007 |         } else {
+      |           ^~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3013:9: error: expected unqualified-id before 'if'
+ 3013 |         if (testChannels.isEmpty() && api_auth_ok && !hard_fail &&
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3117:9: error: expected unqualified-id before 'if'
+ 3117 |         if (!testChannels.isEmpty()) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3317:9: error: expected unqualified-id before 'if'
+ 3317 |         if (debugModeStreams > 0 && debugModeStreams >= testedChannels && api_auth_ok) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3327:9: error: expected unqualified-id before 'for'
+ 3327 |         for (int test_id : {1, 100}) {
+      |         ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3327:36: error: expected unqualified-id before ')' token
+ 3327 |         for (int test_id : {1, 100}) {
+      |                                    ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3336:9: error: expected unqualified-id before 'for'
+ 3336 |         for (const QString &stream_url : direct_streams) {
+      |         ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3404:9: error: expected unqualified-id before 'if'
+ 3404 |         if (hardFailCount > 0 && hardFailCount == direct_streams.size()) return false;
+      |         ^~
+In file included from C:/msys64/ucrt64/include/qt6/QtCore/qglobal.h:47,
+                 from C:/msys64/ucrt64/include/qt6/QtGui/qtguiglobal.h:7,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/qtwidgetsglobal.h:8,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/qapplication.h:8,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/QApplication:1,
+                 from E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:1:
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3407:9: error: expected unqualified-id before 'nullptr'
+ 3407 |         qDebug() << QString("\n[FINAL_RESULT] ÔŁî %1 FAILED").arg(_dbg_username);
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3407:9: error: expected ')' before 'nullptr'
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3407:9: note: to match this '('
+ 3407 |         qDebug() << QString("\n[FINAL_RESULT] ÔŁî %1 FAILED").arg(_dbg_username);
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3409:30: error: 'base' has not been declared
+ 3409 |         xuiAnalyzerDumpFinal(base);
+      |                              ^~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3410:9: error: expected unqualified-id before 'return'
+ 3410 |         return false;
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3411:6: error: expected ';' after class definition
+ 3411 |     }
+      |      ^
+      |      ;
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2850:71: error: 'username' was not declared in this scope; did you mean 'rename'?
+ 2850 |         const QString _eu = QString::fromUtf8(QUrl::toPercentEncoding(username, "@._-"));
+      |                                                                       ^~~~~~~~
+      |                                                                       rename
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2851:71: error: 'password' was not declared in this scope
+ 2851 |         const QString _ep = QString::fromUtf8(QUrl::toPercentEncoding(password, "@._-!"));
+      |                                                                       ^~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2875:38: error: 'link' was not declared in this scope; did you mean 'unlink'?
+ 2875 |         QString m3uUrl = buildM3uUrl(link);
+      |                                      ^~~~
+      |                                      unlink
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3323:69: error: 'username' was not declared in this scope; did you mean 'rename'?
+ 3323 |         QString encUser = QString::fromUtf8(QUrl::toPercentEncoding(username, "@._-"));
+      |                                                                     ^~~~~~~~
+      |                                                                     rename
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3324:69: error: 'password' was not declared in this scope
+ 3324 |         QString encPass = QString::fromUtf8(QUrl::toPercentEncoding(password, "@._-!"));
+      |                                                                     ^~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3412:1: error: expected declaration before '}' token
+ 3412 | };
+      | ^
+mingw32-make[2]: *** [CMakeFiles\OgiXworkMakeM3u.dir\build.make:101: CMakeFiles/OgiXworkMakeM3u.dir/main.cpp.obj] Error 1
+mingw32-make[1]: *** [CMakeFiles\Makefile2:89: CMakeFiles/OgiXworkMakeM3u.dir/all] Error 2
+mingw32-make: *** [Makefile:90: all] Error 2
+Greska u kompajliranju!
+
+ *  The terminal process "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command & 'E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\build_script.bat'" terminated with exit code: 1. 
+ *  Terminal will be reused by tasks, press any key to close it. 
+
+ *  Executing task: & 'E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\build_script.bat' 
+
+Konfigurisanje projekta...
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/msys64/ucrt64/bin/c++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_STDATOMIC
+-- Performing Test HAVE_STDATOMIC - Success
+-- Found WrapAtomic: TRUE
+-- Found WrapVulkanHeaders: C:/msys64/ucrt64/include
+-- Checking for modules 'libbrotlidec;libbrotlicommon'
+--   Found libbrotlidec, version 1.2.0
+--   Found libbrotlicommon, version 1.2.0
+-- Found Brotli (via pkg-config): C:/msys64/ucrt64/include (found version "1.2.0")
+-- Checking for module 'libidn2'
+--   Found libidn2, version 2.3.8
+-- Found Libidn2 (via pkg-config): C:/msys64/ucrt64/include (found version "2.3.8")
+-- Checking for module 'libpsl'
+--   Found libpsl, version 0.21.5
+-- Found Libpsl (via pkg-config): C:/msys64/ucrt64/include (found version "0.21.5")
+-- Checking for module 'libssh2'
+--   Found libssh2, version 1.11.1
+-- Found Libssh2 (via pkg-config): C:/msys64/ucrt64/include (found version "1.11.1")
+-- Checking for module 'libnghttp2'
+--   Found libnghttp2, version 1.68.0
+-- Found NGHTTP2 (via pkg-config): C:/msys64/ucrt64/include (found version "1.68.0")
+-- Checking for module 'libnghttp3'
+--   Found libnghttp3, version 1.15.0
+-- Found NGHTTP3 (via pkg-config): C:/msys64/ucrt64/include (found version "1.15.0")
+-- Checking for module 'libngtcp2'
+--   Found libngtcp2, version 1.21.0
+-- Found NGTCP2 (via pkg-config): C:/msys64/ucrt64/include (found version "")
+-- Checking for module 'libzstd'
+--   Found libzstd, version 1.5.7
+-- Found Zstd (via pkg-config): C:/msys64/ucrt64/include (found version "1.5.7")
+-- Found CURL: C:/msys64/ucrt64/lib/cmake/CURL/CURLConfig.cmake (found version "8.19.0")
+-- Projekt OgiXworkMakeM3u uspešno konfigurisan.
+-- Configuring done (5.9s)
+-- Generating done (0.1s)
+-- Build files have been written to: E:/IPTV/UTTILITIES/NOnAME/OgiXwork/VSS OgiXworkMakeM3u/OgiXworkMakeM3u_CPP/build
+Kompajliranje...
+[  0%] Built target OgiXworkMakeM3u_autogen_timestamp_deps
+[ 14%] Automatic MOC and UIC for target OgiXworkMakeM3u
+[ 14%] Built target OgiXworkMakeM3u_autogen
+[ 28%] Building CXX object CMakeFiles/OgiXworkMakeM3u.dir/OgiXworkMakeM3u_autogen/mocs_compilation.cpp.obj
+[ 42%] Building CXX object CMakeFiles/OgiXworkMakeM3u.dir/main.cpp.obj
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2658:5: error: expected unqualified-id before '{' token
+ 2658 |     {
+      |     ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2688:9: error: expected unqualified-id before 'if'
+ 2688 |         if (isXuiDebugMode(base) && !m_stopRequested.load()) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2699:9: error: expected unqualified-id before 'if'
+ 2699 |         if (apiResult != 3) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2711:9: error: expected unqualified-id before 'if'
+ 2711 |         if (apiResult == 3) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2726:9: error: expected unqualified-id before 'if'
+ 2726 |         if (!_apiDmSkipped && apiResult == 2 && !hard_fail && !api_auth_ok &&
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2738:9: error: expected unqualified-id before 'if'
+ 2738 |         if (apiResult == 2 && !hard_fail && !api_auth_ok) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2753:9: error: expected unqualified-id before 'if'
+ 2753 |         if (m_stopRequested.load(std::memory_order_acquire)) return false;
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2755:12: error: expected unqualified-id before 'if'
+ 2755 |            if (hard_fail) {
+      |            ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2770:13: error: expected unqualified-id before 'if'
+ 2770 |             if (!api_auth_ok || isXuiDebugMode(base)) {
+      |             ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2784:13: error: expected unqualified-id before 'if'
+ 2784 |             if (api_auth_ok) {
+      |             ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2788:13: error: expected unqualified-id before 'if'
+ 2788 |             if (!hard_fail && !m_stopRequested.load(std::memory_order_acquire)) {
+      |             ^~
+In file included from C:/msys64/ucrt64/include/qt6/QtCore/qglobal.h:47,
+                 from C:/msys64/ucrt64/include/qt6/QtGui/qtguiglobal.h:7,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/qtwidgetsglobal.h:8,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/qapplication.h:8,
+                 from C:/msys64/ucrt64/include/qt6/QtWidgets/QApplication:1,
+                 from E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:1:
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2846:5: error: expected unqualified-id before 'nullptr'
+ 2846 |     qDebug() << "[CP] api_auth_ok=false Ôćĺ return false. base=" << base;
+      |     ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2846:5: error: expected ')' before 'nullptr'
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2846:5: note: to match this '('
+ 2846 |     qDebug() << "[CP] api_auth_ok=false Ôćĺ return false. base=" << base;
+      |     ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2847:5: error: expected unqualified-id before 'return'
+ 2847 |     return false;
+      |     ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2696:36: error: 'adaptiveApiMs' was not declared in this scope
+ 2696 |         int apiResult = doApiParse(adaptiveApiMs);
+      |                                    ^~~~~~~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2696:25: error: 'doApiParse' was not declared in this scope
+ 2696 |         int apiResult = doApiParse(adaptiveApiMs);
+      |                         ^~~~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp: In lambda function:
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2540:24: error: expected 'catch' before '(' token
+ 2540 |                     if (r.status_code == 521 || r.status_code == 522 ||
+      |                        ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2540:25: error: 'r' does not name a type
+ 2540 |                     if (r.status_code == 521 || r.status_code == 522 ||
+      |                         ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2540:26: error: expected ')' before '.' token
+ 2540 |                     if (r.status_code == 521 || r.status_code == 522 ||
+      |                          ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2540:24: note: to match this '('
+ 2540 |                     if (r.status_code == 521 || r.status_code == 522 ||
+      |                        ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2540:26: error: expected '{' before '.' token
+ 2540 |                     if (r.status_code == 521 || r.status_code == 522 ||
+      |                          ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2540:26: error: expected primary-expression before '.' token
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2540:49: error: 'r' was not declared in this scope; did you mean 'tr'?
+ 2540 |                     if (r.status_code == 521 || r.status_code == 522 ||
+      |                                                 ^
+      |                                                 tr
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2547:66: error: 'latency' was not declared in this scope
+ 2547 |                     setCachedState(base, ServerCache::State::Up, latency);
+      |                                                                  ^~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2618:69: error: expected primary-expression before '>' token
+ 2618 |                             statusStr = ui["status"].get<std::string>();
+      |                                                                     ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2618:71: error: expected primary-expression before ')' token
+ 2618 |                             statusStr = ui["status"].get<std::string>();
+      |                                                                       ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2625:70: error: expected primary-expression before '>' token
+ 2625 |                             if (er.is_number()) expTs = er.get<qint64>();
+      |                                                                      ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2625:72: error: expected primary-expression before ')' token
+ 2625 |                             if (er.is_number()) expTs = er.get<qint64>();
+      |                                                                        ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2627:67: error: expected primary-expression before '>' token
+ 2627 |                                 std::string s = er.get<std::string>();
+      |                                                                   ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2627:69: error: expected primary-expression before ')' token
+ 2627 |                                 std::string s = er.get<std::string>();
+      |                                                                     ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2640:130: error: expected primary-expression before '>' token
+ 2640 |                                 if (ui["max_connections"].is_string()) max_conn = std::stoi(ui["max_connections"].get<std::string>());
+      |                                                                                                                                  ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2640:132: error: expected primary-expression before ')' token
+ 2640 |                                 if (ui["max_connections"].is_string()) max_conn = std::stoi(ui["max_connections"].get<std::string>());
+      |                                                                                                                                    ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2641:75: error: expected primary-expression before 'int'
+ 2641 |                                 else max_conn = ui["max_connections"].get<int>();
+      |                                                                           ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2646:138: error: expected primary-expression before '>' token
+ 2646 |                                 if (ui["active_cons"].is_string()) active_cons = QString::fromStdString(ui["active_cons"].get<std::string>());
+      |                                                                                                                                          ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2646:140: error: expected primary-expression before ')' token
+ 2646 |                                 if (ui["active_cons"].is_string()) active_cons = QString::fromStdString(ui["active_cons"].get<std::string>());
+      |                                                                                                                                            ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2647:90: error: expected primary-expression before 'int'
+ 2647 |                                 else active_cons = QString::number(ui["active_cons"].get<int>());
+      |                                                                                          ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp: In member function 'bool Worker::checkPlayable(const QString&, CheckResult&)':
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2655:15: error: expected ',' or ';' before 'catch'
+ 2655 |             } catch (...) { return 2; }
+      |               ^~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp: At global scope:
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2851:23: error: expected initializer before '_eu'
+ 2851 |         const QString _eu = QString::fromUtf8(QUrl::toPercentEncoding(username, "@._-"));
+      |                       ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2852:71: error: 'password' was not declared in this scope
+ 2852 |         const QString _ep = QString::fromUtf8(QUrl::toPercentEncoding(password, "@._-!"));
+      |                                                                       ^~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2859:9: error: expected unqualified-id before '{' token
+ 2859 |         {
+      |         ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2876:38: error: 'link' was not declared in this scope; did you mean 'unlink'?
+ 2876 |         QString m3uUrl = buildM3uUrl(link);
+      |                                      ^~~~
+      |                                      unlink
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2881:9: error: expected unqualified-id before 'if'
+ 2881 |         if (!usedMovieCache && !m3uUrl.isEmpty() && !m_stopRequested.load(std::memory_order_acquire)) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2946:9: error: expected unqualified-id before 'if'
+ 2946 |         if (m_stopRequested.load(std::memory_order_acquire)) return false;
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2948:9: error: expected unqualified-id before 'if'
+ 2948 |         if (m3u_timed_out && api_auth_ok) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2952:9: error: expected unqualified-id before 'if'
+ 2952 |         if (!m3u_raw.empty()) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3008:11: error: expected unqualified-id before 'else'
+ 3008 |         } else {
+      |           ^~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3014:9: error: expected unqualified-id before 'if'
+ 3014 |         if (testChannels.isEmpty() && api_auth_ok && !hard_fail &&
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3118:9: error: expected unqualified-id before 'if'
+ 3118 |         if (!testChannels.isEmpty()) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3318:9: error: expected unqualified-id before 'if'
+ 3318 |         if (debugModeStreams > 0 && debugModeStreams >= testedChannels && api_auth_ok) {
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3324:69: error: 'username' was not declared in this scope; did you mean 'rename'?
+ 3324 |         QString encUser = QString::fromUtf8(QUrl::toPercentEncoding(username, "@._-"));
+      |                                                                     ^~~~~~~~
+      |                                                                     rename
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3325:69: error: 'password' was not declared in this scope
+ 3325 |         QString encPass = QString::fromUtf8(QUrl::toPercentEncoding(password, "@._-!"));
+      |                                                                     ^~~~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3328:9: error: expected unqualified-id before 'for'
+ 3328 |         for (int test_id : {1, 100}) {
+      |         ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3328:36: error: expected unqualified-id before ')' token
+ 3328 |         for (int test_id : {1, 100}) {
+      |                                    ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3337:9: error: expected unqualified-id before 'for'
+ 3337 |         for (const QString &stream_url : direct_streams) {
+      |         ^~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3405:9: error: expected unqualified-id before 'if'
+ 3405 |         if (hardFailCount > 0 && hardFailCount == direct_streams.size()) return false;
+      |         ^~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3408:9: error: expected unqualified-id before 'nullptr'
+ 3408 |         qDebug() << QString("\n[FINAL_RESULT] ÔŁî %1 FAILED").arg(_dbg_username);
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3408:9: error: expected ')' before 'nullptr'
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3408:9: note: to match this '('
+ 3408 |         qDebug() << QString("\n[FINAL_RESULT] ÔŁî %1 FAILED").arg(_dbg_username);
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3410:29: error: expected constructor, destructor, or type conversion before '(' token
+ 3410 |         xuiAnalyzerDumpFinal(base);
+      |                             ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3411:9: error: expected unqualified-id before 'return'
+ 3411 |         return false;
+      |         ^~~~~~
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3412:5: error: expected declaration before '}' token
+ 3412 |     }
+      |     ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:3413:1: error: expected declaration before '}' token
+ 3413 | };
+      | ^
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp: In member function 'bool Worker::checkPlayable(const QString&, CheckResult&)':
+E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\main.cpp:2656:9: warning: control reaches end of non-void function [-Wreturn-type]
+ 2656 |         };
+      |         ^
+mingw32-make[2]: *** [CMakeFiles\OgiXworkMakeM3u.dir\build.make:101: CMakeFiles/OgiXworkMakeM3u.dir/main.cpp.obj] Error 1
+mingw32-make[1]: *** [CMakeFiles\Makefile2:89: CMakeFiles/OgiXworkMakeM3u.dir/all] Error 2
+mingw32-make: *** [Makefile:90: all] Error 2
+Greska u kompajliranju!
+
+ *  The terminal process "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command & 'E:\IPTV\UTTILITIES\NOnAME\OgiXwork\VSS OgiXworkMakeM3u\OgiXworkMakeM3u_CPP\build_script.bat'" terminated with exit code: 1. 
+ *  Terminal will be reused by tasks, press any key to close it. 
