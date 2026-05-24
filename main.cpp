@@ -2532,9 +2532,10 @@ public slots:
         return 0;
     }
 
-    // Default: rate-limit retry
-    qDebug() << "[403 NGINX] Sadržaj prisutan → rate-limit, retry";
-    return 2;
+                        // Default: rate-limit retry
+                    qDebug() << "[403 NGINX] Sadržaj prisutan → rate-limit, retry";
+                    return 2;
+                }
 }
                     if (r.status_code == 521 || r.status_code == 522 ||
                     r.status_code == 530) {
