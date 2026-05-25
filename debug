@@ -1,0 +1,3643 @@
+[STARTUP] === PROGRAM START ===
+[STARTUP] QApplication kreiranje...
+[STARTUP] QApplication OK
+[STARTUP] Style OK
+[STARTUP] OgiXApp konstruktor pocinje...
+[STARTUP] OgiXApp konstruktor GOTOV
+[STARTUP] window.show() GOTOV — app.exec() sledi
+[PLAYABLE_UI] Dugme pritisnuto
+[PLAYABLE_UI] cleanupWorker pocinje...
+[PLAYABLE_UI] cleanupWorker OK, pokrecem timer...
+[PLAYABLE_UI] Timer fired
+[PLAYABLE_UI] validLinks= 64
+[PLAYABLE_UI] Kreiram Worker i QThread...
+[PLAYABLE_UI] workerThread->start()
+[PLAYABLE_UI] QThread::started -> runPlayable()
+[PLAYABLE_WORKER] runPlayable START, linkova= 64
+[MOVIE_CACHE] Reset movie cache.
+[DEBUG_ANALYZER] Reset svih server statistika.
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=vesna_kulidzan&pas"
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=vesna_kulidzan&pas"
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=g_skype2&password="
+= "http://v2pro.online:8080" active_slots= 2 time= "22:22:27.752"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+╚════════════════════════════════════════════════════════════════╝
+
+
+╔════════════════════════════════════════════════════════════════╗
+st Je Jedini Sudija               ║
+st Je Jedini Sudija               ║
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] base: "http://v2pro.online:8080"
+╚════════════════════════════════════════════════════════════════╝
+
+════════════════════════════════════════════════════╝
+
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=vesna_kulidzan&password=obZEtdI"
+se: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=g_skype2&password=o7wyMRHoas5ty"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+  URL:  "http://v2pro.online:8080/get.php?username=vesna_kulidzan&password=obZEtdICSe&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  User-Agent:  "Lavf53.32.100"
+OAD ───────────────────────────┐
+d: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  1679  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=Montserrat:200,400,700\" rel=\"stylesheet\"><style>*{-webkit-box-sizing:border-box;box-sizing:border-box}body{padding:0;margin:0}#notfound{position:relative;height:100vh}#notfound .notfound{position:absol"
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/vesna_kulidzan/obZEtdICSe/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/vesna_kulidzan/obZEtdICSe/1.m3u8"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  66609  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 timeshift=\"17\" tvg-id=\"RTS2.rs\" tvg-name=\"RTS 2\" tvg-logo=\"https://github.com/tv-logo/tv-logos/blob/main/countries/serbia/rts2-rs.png?raw=true\" group-title=\"SRBIJA\",RTS 2\nhttp://v2pro.online:8080/g_skype2/o7wyMRHoas5tyg/4\r\n#EXTINF:-1 tv"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  522
+  Selected channels:  4
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/g_skype2/o7wyMRHoas5tyg/4"
+  Type:  "unknown"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/vesna_kulidzan/obZEtdICSe/1.ts"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1669  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/g_skype2/o7wyMRHoas5tyg/259"
+  Type:  "unknown"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/vesna_kulidzan/obZEtdICSe/100.ts"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1669  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 3 ]
+  URL:  "http://v2pro.online:8080/g_skype2/o7wyMRHoas5tyg/813"
+  Type:  "unknown"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/vesna_kulidzan/obZEtdICSe/100.m3u8"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1669  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 4 ]
+  URL:  "http://v2pro.online:8080/g_skype2/o7wyMRHoas5tyg/75507"
+  Type:  "unknown"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/vesna_kulidzan/obZEtdICSe/100.ts"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1669  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  4  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 624 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Dzafic_app&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:28.376"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Dzafic_app&password=YYZdGEyfaU&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Dzafic_app&password=YYZdGEyfaU"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Dzafic_app&password=YYZdGEyfaU&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  200  | Body:  1679  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 689 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Goran_Simonovic&pa"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:28.441"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Goran_Simonovic&password=ApFanr1GHT&ty"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Goran_Simonovic&password=ApFanr"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Goran_Simonovic&password=ApFanr1GHT&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  500260  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3578
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/Dzafic_app/YYZdGEyfaU/95937.mkv"
+  Type:  "movie"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  505566  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3470
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/live/A47BD2855F9F7C3D70DB1348D7C1E8FD/436505"
+  Type:  "live"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/movie/A47BD2855F9F7C3D70DB1348D7C1E8FD/95937.mkv"
+  Type:  "movie"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  2  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 573 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Ivan_Markic&passwo"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:29.014"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Ivan_Markic&password=Markic_Ivan&type="
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Ivan_Markic&password=Markic_Iva"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Ivan_Markic&password=Markic_Ivan&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  11978  bytes
+  Content-Type:  "video/x-matroska"
+  Body[:100]:  "\u001AEߣ�B��\u0001B��\u0001B��\u0004B��\bB��matroskaB��\u0004B��\u0002\u0018S�g\u0001\u0000\u0000\u0001\u0004\u0011��\u0011M�t�M��S��\u0015I�fS��\u0010\u0003M��S��\u0016T�kS��\u0010}M��S��\u001CS�kS��"
+[ANALIZA] ✅ MEDIA BYTES OK → PLAYABLE!
+└─────────────────────────────────────────────────────┘
+[FINALNA ODLUKA] ✅ PLAYABLE - Stream je potvrđen!
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= true trajanje= 769 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Jure_Marusic&passw"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:29.145"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Jure_Marusic&password=Marusic_Jure&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Jure_Marusic&password=Marusic_J"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Jure_Marusic&password=Marusic_Jure&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  500147  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3742
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/Ivan_Markic/Markic_Ivan/95937.mkv"
+  Type:  "movie"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/Ivan_Markic/Markic_Ivan/436505"
+  Type:  "unknown"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  501618  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3726
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/Jure_Marusic/Marusic_Jure/95937.mkv"
+  Type:  "movie"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  2  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 552 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Miki_Bodilovic&pas"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:29.566"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Miki_Bodilovic&password=RYrBak8gZj7r&t"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Miki_Bodilovic&password=RYrBak8"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Miki_Bodilovic&password=RYrBak8gZj7r&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/Jure_Marusic/Marusic_Jure/436505"
+  Type:  "unknown"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  2  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 578 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Pero_Oroz&password"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:29.723"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Pero_Oroz&password=Oroz_Pero&type=m3u"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Pero_Oroz&password=Oroz_Pero"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Pero_Oroz&password=Oroz_Pero&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  502864  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3529
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/Miki_Bodilovic/RYrBak8gZj7r/95937.mkv"
+  Type:  "movie"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  502869  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3810
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/Pero_Oroz/Oroz_Pero/95937.mkv"
+  Type:  "movie"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1688  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/Miki_Bodilovic/RYrBak8gZj7r/436505"
+  Type:  "unknown"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/Pero_Oroz/Oroz_Pero/436505"
+  Type:  "unknown"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1688  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  2  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 690 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Stana_Cvetkovic&pa"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:30.257"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Stana_Cvetkovic&password=7HNsS5xKqR&ty"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Stana_Cvetkovic&password=7HNsS5"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Stana_Cvetkovic&password=7HNsS5xKqR&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  2  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 581 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=vesna_kulidzan&pas"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:30.304"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=vesna_kulidzan&password=obZEtdICSe&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=vesna_kulidzan&password=obZEtdI"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=vesna_kulidzan&password=obZEtdICSe&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  1679  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=Montserrat:200,400,700\" rel=\"stylesheet\"><style>*{-webkit-box-sizing:border-box;box-sizing:border-box}body{padding:0;margin:0}#notfound{position:relative;height:100vh}#notfound .notfound{position:absol"
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/vesna_kulidzan/obZEtdICSe/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/vesna_kulidzan/obZEtdICSe/1.m3u8"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/vesna_kulidzan/obZEtdICSe/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/vesna_kulidzan/obZEtdICSe/100.ts"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  501615  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3532
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/Stana_Cvetkovic/7HNsS5xKqR/95937.mkv"
+  Type:  "movie"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/vesna_kulidzan/obZEtdICSe/100.m3u8"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1688  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/Stana_Cvetkovic/7HNsS5xKqR/436505"
+  Type:  "unknown"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/vesna_kulidzan/obZEtdICSe/100.ts"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1688  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  2  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 609 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=sherin_one&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:30.866"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=sherin_one&password=IoBHtkP7wqsxg&type"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=sherin_one&password=IoBHtkP7wqs"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=sherin_one&password=IoBHtkP7wqsxg&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  200  | Body:  1679  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 610 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=ZxP2RyV3sK&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:30.914"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=ZxP2RyV3sK&password=3j2tf8bJbL&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=ZxP2RyV3sK&password=3j2tf8bJbL"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=ZxP2RyV3sK&password=3j2tf8bJbL&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  68905  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 timeshift=\"12\" tvg-id=\"rts1\" tvg-name=\"RTS 1 FHD\" tvg-logo=\"https://github.com/tv-logo/tv-logos/blob/main/countries/serbia/rts1-rs.png?raw=true\" group-title=\"SRBIJA\",RTS 1 FHD\nhttp://v2pro.online:8080/sherin_one/IoBHtkP7wqsxg/3564\r\n#EXT"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  544
+  Selected channels:  4
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/sherin_one/IoBHtkP7wqsxg/3564"
+  Type:  "unknown"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1669  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/sherin_one/IoBHtkP7wqsxg/1391"
+  Type:  "unknown"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1669  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 3 ]
+  URL:  "http://v2pro.online:8080/sherin_one/IoBHtkP7wqsxg/28"
+  Type:  "unknown"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  501620  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3776
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/ZxP2RyV3sK/3j2tf8bJbL/95937.mkv"
+  Type:  "movie"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1669  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 4 ]
+  URL:  "http://v2pro.online:8080/sherin_one/IoBHtkP7wqsxg/78341"
+  Type:  "unknown"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/ZxP2RyV3sK/3j2tf8bJbL/436505"
+  Type:  "unknown"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1669  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  4  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 590 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=nikola_sesic&passw"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:31.456"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=nikola_sesic&password=ATtyM72kag&type="
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=nikola_sesic&password=ATtyM72ka"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=nikola_sesic&password=ATtyM72kag&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  2  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 589 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Mijo_Ivandic&passw"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:31.503"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Mijo_Ivandic&password=Ivandic_Mijo&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Mijo_Ivandic&password=Ivandic_M"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Mijo_Ivandic&password=Ivandic_Mijo&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  1679  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=Montserrat:200,400,700\" rel=\"stylesheet\"><style>*{-webkit-box-sizing:border-box;box-sizing:border-box}body{padding:0;margin:0}#notfound{position:relative;height:100vh}#notfound .notfound{position:absol"
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/nikola_sesic/ATtyM72kag/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/nikola_sesic/ATtyM72kag/1.m3u8"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/nikola_sesic/ATtyM72kag/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/nikola_sesic/ATtyM72kag/100.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/nikola_sesic/ATtyM72kag/100.m3u8"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  502866  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3736
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/Mijo_Ivandic/Ivandic_Mijo/95937.mkv"
+  Type:  "movie"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/nikola_sesic/ATtyM72kag/100.ts"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/Mijo_Ivandic/Ivandic_Mijo/436505"
+  Type:  "unknown"
+  Status:  200  | Body:  1679  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 607 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Josip_Blazevic&pas"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:32.063"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Josip_Blazevic&password=bDryTHFGRL&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Josip_Blazevic&password=bDryTHF"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Josip_Blazevic&password=bDryTHFGRL&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  2  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 610 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Damir_Damjanovic2&"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:32.113"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Damir_Damjanovic2&password=Damjanovic_"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Damir_Damjanovic2&password=Damj"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Damir_Damjanovic2&password=Damjanovic_Damir2&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  501616  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3726
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/Josip_Blazevic/bDryTHFGRL/95937.mkv"
+  Type:  "movie"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  501613  bytes
+  Content-Type:  "application/octet-stream"
+  Body[:300]:  "#EXTM3U\n#EXT-X-SESSION-DATA:DATA-ID=\"com.xui.1_5_13\"\n#EXTINF:-1 tvg-id=\"\" tvg-name=\"▲▼ SRBIJA ▲▼▲▼▲▼\" tvg-logo=\"http://v2pro.online:8080/images/2TfGmmwXYKGNiwi6Xi7mmPOU1wepnLW2m7OUkG1KMTXgFc4gDFnK6AnnyTzw756P.jpg\" group-title=\"SRBIJA\",▲▼ SRBIJA ▲▼▲▼▲▼\nhttp://v2pro.onl"
+[M3U ANALIZA] ✓ #EXTM3U detektovano
+  Stream count:  3610
+  Selected channels:  2
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[STREAM TEST # 1 ]
+  URL:  "http://v2pro.online:8080/movie/Damir_Damjanovic2/Damjanovic_Damir2/95937.mkv"
+  Type:  "movie"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+
+[STREAM TEST # 2 ]
+  URL:  "http://v2pro.online:8080/Damir_Damjanovic2/Damjanovic_Damir2/436505"
+  Type:  "unknown"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  1677  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:100]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=M"
+[ANALIZA] ⚠ XUI Debug Mode detektovano → NEXT STREAM
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  2  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 596 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=2gEfwyLTzm&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:32.709"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=2gEfwyLTzm&password=OdV5YMj4ZK&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=2gEfwyLTzm&password=OdV5YMj4ZK"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=2gEfwyLTzm&password=OdV5YMj4ZK&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[STREAM RESPONSE]
+  Status:  200
+  Body Size:  13338  bytes
+  Content-Type:  "video/x-matroska"
+  Body[:100]:  "\u001AEߣ�B��\u0001B��\u0001B��\u0004B��\bB��matroskaB��\u0004B��\u0002\u0018S�g\u0001\u0000\u0000\u0001\u0004\u0011��\u0011M�t�M��S��\u0015I�fS��\u0010\u0003M��S��\u0016T�kS��\u0010}M��S��\u001CS�kS��"
+[ANALIZA] ✅ MEDIA BYTES OK → PLAYABLE!
+└─────────────────────────────────────────────────────┘
+[FINALNA ODLUKA] ✅ PLAYABLE - Stream je potvrđen!
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= true trajanje= 695 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=3v3eHn??URqP&passw"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:32.758"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=3v3eHn??URqP&password=ogyzTq9iop&type="
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=3v3eHn%3F%3FURqP&password=ogyzT"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=3v3eHn%3F%3FURqP&password=ogyzTq9iop&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  1679  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=Montserrat:200,400,700\" rel=\"stylesheet\"><style>*{-webkit-box-sizing:border-box;box-sizing:border-box}body{padding:0;margin:0}#notfound{position:relative;height:100vh}#notfound .notfound{position:absol"
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/2gEfwyLTzm/OdV5YMj4ZK/1.ts"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  1679  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=Montserrat:200,400,700\" rel=\"stylesheet\"><style>*{-webkit-box-sizing:border-box;box-sizing:border-box}body{padding:0;margin:0}#notfound{position:relative;height:100vh}#notfound .notfound{position:absol"
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/3v3eHn%3F%3FURqP/ogyzTq9iop/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/2gEfwyLTzm/OdV5YMj4ZK/1.m3u8"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/3v3eHn%3F%3FURqP/ogyzTq9iop/1.m3u8"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/2gEfwyLTzm/OdV5YMj4ZK/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/3v3eHn%3F%3FURqP/ogyzTq9iop/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/2gEfwyLTzm/OdV5YMj4ZK/100.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/3v3eHn%3F%3FURqP/ogyzTq9iop/100.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/2gEfwyLTzm/OdV5YMj4ZK/100.m3u8"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/3v3eHn%3F%3FURqP/ogyzTq9iop/100.m3u8"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/2gEfwyLTzm/OdV5YMj4ZK/100.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/3v3eHn%3F%3FURqP/ogyzTq9iop/100.ts"
+  Status:  200  | Body:  1679  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 667 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=6bflBPbwAw&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:33.376"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=6bflBPbwAw&password=wOEqzKhL1v&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=6bflBPbwAw&password=wOEqzKhL1v"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=6bflBPbwAw&password=wOEqzKhL1v&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  200  | Body:  1679  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 668 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=8bUYRM??NvhC&passw"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:33.426"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=8bUYRM??NvhC&password=4NMLyxX69J&type="
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=8bUYRM%3F%3FNvhC&password=4NMLy"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=8bUYRM%3F%3FNvhC&password=4NMLyxX69J&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  1679  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=Montserrat:200,400,700\" rel=\"stylesheet\"><style>*{-webkit-box-sizing:border-box;box-sizing:border-box}body{padding:0;margin:0}#notfound{position:relative;height:100vh}#notfound .notfound{position:absol"
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/6bflBPbwAw/wOEqzKhL1v/1.ts"
+[M3U RESPONSE]
+  Status:  200
+  Body Size:  1679  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  "<html><head><title>XUI.one - Debug Mode</title><link href=\"https://fonts.googleapis.com/css?family=Montserrat:200,400,700\" rel=\"stylesheet\"><style>*{-webkit-box-sizing:border-box;box-sizing:border-box}body{padding:0;margin:0}#notfound{position:relative;height:100vh}#notfound .notfound{position:absol"
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/8bUYRM%3F%3FNvhC/4NMLyxX69J/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/6bflBPbwAw/wOEqzKhL1v/1.m3u8"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/8bUYRM%3F%3FNvhC/4NMLyxX69J/1.m3u8"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/6bflBPbwAw/wOEqzKhL1v/1.ts"
+  Status:  200  | Body:  1679  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/8bUYRM%3F%3FNvhC/4NMLyxX69J/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/6bflBPbwAw/wOEqzKhL1v/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/8bUYRM%3F%3FNvhC/4NMLyxX69J/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/6bflBPbwAw/wOEqzKhL1v/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/8bUYRM%3F%3FNvhC/4NMLyxX69J/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/6bflBPbwAw/wOEqzKhL1v/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/8bUYRM%3F%3FNvhC/4NMLyxX69J/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 692 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=8JzxhzEEMs&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:34.118"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=8JzxhzEEMs&password=1rcdMzQlJd&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=8JzxhzEEMs&password=1rcdMzQlJd"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=8JzxhzEEMs&password=1rcdMzQlJd&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 793 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=aCuFarBtSN&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:34.169"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=aCuFarBtSN&password=2EOcmMSXmq&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=aCuFarBtSN&password=2EOcmMSXmq"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=aCuFarBtSN&password=2EOcmMSXmq&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/8JzxhzEEMs/1rcdMzQlJd/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/aCuFarBtSN/2EOcmMSXmq/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/8JzxhzEEMs/1rcdMzQlJd/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/aCuFarBtSN/2EOcmMSXmq/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/8JzxhzEEMs/1rcdMzQlJd/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/aCuFarBtSN/2EOcmMSXmq/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/8JzxhzEEMs/1rcdMzQlJd/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/aCuFarBtSN/2EOcmMSXmq/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/8JzxhzEEMs/1rcdMzQlJd/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/aCuFarBtSN/2EOcmMSXmq/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/8JzxhzEEMs/1rcdMzQlJd/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/aCuFarBtSN/2EOcmMSXmq/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 701 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Adel_Keric&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:34.819"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Adel_Keric&password=heaUzFeTYn&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Adel_Keric&password=heaUzFeTYn"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Adel_Keric&password=heaUzFeTYn&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 697 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Ado_Pire&password="
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:34.866"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Ado_Pire&password=aW9bXfVCiz&type=m3u"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Ado_Pire&password=aW9bXfVCiz"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Ado_Pire&password=aW9bXfVCiz&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Adel_Keric/heaUzFeTYn/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ado_Pire/aW9bXfVCiz/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Adel_Keric/heaUzFeTYn/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ado_Pire/aW9bXfVCiz/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Adel_Keric/heaUzFeTYn/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Ado_Pire/aW9bXfVCiz/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Adel_Keric/heaUzFeTYn/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ado_Pire/aW9bXfVCiz/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Adel_Keric/heaUzFeTYn/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ado_Pire/aW9bXfVCiz/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Adel_Keric/heaUzFeTYn/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Ado_Pire/aW9bXfVCiz/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 697 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Aldo_Moro&password"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:35.516"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Aldo_Moro&password=1r0buf3ochichlqAcrl"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Aldo_Moro&password=1r0buf3ochic"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Aldo_Moro&password=1r0buf3ochichlqAcrlT&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Antic_Juric&passwo"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:35.566"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Antic_Juric&password=7KLDCG4KVS&type=m"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Antic_Juric&password=7KLDCG4KVS"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Antic_Juric&password=7KLDCG4KVS&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Aldo_Moro/1r0buf3ochichlqAcrlT/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Antic_Juric/7KLDCG4KVS/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Aldo_Moro/1r0buf3ochichlqAcrlT/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Antic_Juric/7KLDCG4KVS/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Aldo_Moro/1r0buf3ochichlqAcrlT/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Antic_Juric/7KLDCG4KVS/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Aldo_Moro/1r0buf3ochichlqAcrlT/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Antic_Juric/7KLDCG4KVS/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Aldo_Moro/1r0buf3ochichlqAcrlT/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Antic_Juric/7KLDCG4KVS/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Aldo_Moro/1r0buf3ochichlqAcrlT/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Antic_Juric/7KLDCG4KVS/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 703 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=APqKGsPJui&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:36.219"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=APqKGsPJui&password=IoJPxHO4uj&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=APqKGsPJui&password=IoJPxHO4uj"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=APqKGsPJui&password=IoJPxHO4uj&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 703 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Beljan_Nevenka&pas"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:36.269"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Beljan_Nevenka&password=hNp4QKJDkd&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Beljan_Nevenka&password=hNp4QKJ"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Beljan_Nevenka&password=hNp4QKJDkd&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/APqKGsPJui/IoJPxHO4uj/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Beljan_Nevenka/hNp4QKJDkd/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/APqKGsPJui/IoJPxHO4uj/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Beljan_Nevenka/hNp4QKJDkd/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/APqKGsPJui/IoJPxHO4uj/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Beljan_Nevenka/hNp4QKJDkd/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/APqKGsPJui/IoJPxHO4uj/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Beljan_Nevenka/hNp4QKJDkd/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/APqKGsPJui/IoJPxHO4uj/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Beljan_Nevenka/hNp4QKJDkd/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/APqKGsPJui/IoJPxHO4uj/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Beljan_Nevenka/hNp4QKJDkd/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 698 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Bruno.maric&passwo"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:36.917"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Bruno.maric&password=p28MJ8npPL&type=m"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Bruno.maric&password=p28MJ8npPL"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Bruno.maric&password=p28MJ8npPL&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=COkvqr@0uyL&passwo"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:36.969"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=COkvqr@0uyL&password=xlXh7aHQod&type=m"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=COkvqr@0uyL&password=xlXh7aHQod"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=COkvqr@0uyL&password=xlXh7aHQod&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Bruno.maric/p28MJ8npPL/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/COkvqr@0uyL/xlXh7aHQod/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Bruno.maric/p28MJ8npPL/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/COkvqr@0uyL/xlXh7aHQod/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Bruno.maric/p28MJ8npPL/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/COkvqr@0uyL/xlXh7aHQod/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Bruno.maric/p28MJ8npPL/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/COkvqr@0uyL/xlXh7aHQod/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Bruno.maric/p28MJ8npPL/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/COkvqr@0uyL/xlXh7aHQod/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Bruno.maric/p28MJ8npPL/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/COkvqr@0uyL/xlXh7aHQod/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 702 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=D80UomXam0&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:37.619"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=D80UomXam0&password=Q9iYEceMtN&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=D80UomXam0&password=Q9iYEceMtN"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=D80UomXam0&password=Q9iYEceMtN&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Danijel_Radosic&pa"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:37.669"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Danijel_Radosic&password=GBIExyaUUl&ty"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Danijel_Radosic&password=GBIExy"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Danijel_Radosic&password=GBIExyaUUl&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/D80UomXam0/Q9iYEceMtN/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Danijel_Radosic/GBIExyaUUl/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/D80UomXam0/Q9iYEceMtN/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Danijel_Radosic/GBIExyaUUl/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/D80UomXam0/Q9iYEceMtN/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Danijel_Radosic/GBIExyaUUl/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/D80UomXam0/Q9iYEceMtN/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Danijel_Radosic/GBIExyaUUl/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/D80UomXam0/Q9iYEceMtN/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Danijel_Radosic/GBIExyaUUl/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/D80UomXam0/Q9iYEceMtN/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Danijel_Radosic/GBIExyaUUl/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 697 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Darko_tehnicar&pas"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:38.316"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Darko_tehnicar&password=g5PUKdTdUY&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Darko_tehnicar&password=g5PUKdT"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Darko_tehnicar&password=g5PUKdTdUY&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 697 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Dejan_Bojanic&pass"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:38.366"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Dejan_Bojanic&password=yIZAyygWEY&type"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Dejan_Bojanic&password=yIZAyygW"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Dejan_Bojanic&password=yIZAyygWEY&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Darko_tehnicar/g5PUKdTdUY/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Dejan_Bojanic/yIZAyygWEY/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Darko_tehnicar/g5PUKdTdUY/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Dejan_Bojanic/yIZAyygWEY/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Darko_tehnicar/g5PUKdTdUY/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Dejan_Bojanic/yIZAyygWEY/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Darko_tehnicar/g5PUKdTdUY/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Dejan_Bojanic/yIZAyygWEY/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Darko_tehnicar/g5PUKdTdUY/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Dejan_Bojanic/yIZAyygWEY/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Darko_tehnicar/g5PUKdTdUY/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Dejan_Bojanic/yIZAyygWEY/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=DFdxtfujGF&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:39.016"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=DFdxtfujGF&password=040b8MROPV&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=DFdxtfujGF&password=040b8MROPV"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=DFdxtfujGF&password=040b8MROPV&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Dobrica&password=2"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:39.066"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Dobrica&password=23101960&type=m3u"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Dobrica&password=23101960"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Dobrica&password=23101960&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/DFdxtfujGF/040b8MROPV/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Dobrica/23101960/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/DFdxtfujGF/040b8MROPV/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Dobrica/23101960/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/DFdxtfujGF/040b8MROPV/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Dobrica/23101960/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/DFdxtfujGF/040b8MROPV/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Dobrica/23101960/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/DFdxtfujGF/040b8MROPV/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Dobrica/23101960/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/DFdxtfujGF/040b8MROPV/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Dobrica/23101960/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 702 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=eaD5qBGQnJbS&passw"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:39.718"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=eaD5qBGQnJbS&password=Zr7xkuSTLvZn&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=eaD5qBGQnJbS&password=Zr7xkuSTL"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=eaD5qBGQnJbS&password=Zr7xkuSTLvZn&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 702 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=eQV4YPJn6F&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:39.768"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=eQV4YPJn6F&password=deT9fzdXAy&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=eQV4YPJn6F&password=deT9fzdXAy"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=eQV4YPJn6F&password=deT9fzdXAy&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eaD5qBGQnJbS/Zr7xkuSTLvZn/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eQV4YPJn6F/deT9fzdXAy/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eaD5qBGQnJbS/Zr7xkuSTLvZn/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eQV4YPJn6F/deT9fzdXAy/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/eaD5qBGQnJbS/Zr7xkuSTLvZn/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/eQV4YPJn6F/deT9fzdXAy/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eaD5qBGQnJbS/Zr7xkuSTLvZn/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eQV4YPJn6F/deT9fzdXAy/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eaD5qBGQnJbS/Zr7xkuSTLvZn/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eQV4YPJn6F/deT9fzdXAy/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/eaD5qBGQnJbS/Zr7xkuSTLvZn/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/eQV4YPJn6F/deT9fzdXAy/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 701 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=eYM3WeLK6d&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:40.419"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=eYM3WeLK6d&password=jFyPMPieCU&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=eYM3WeLK6d&password=jFyPMPieCU"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=eYM3WeLK6d&password=jFyPMPieCU&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 698 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Filip_Nikic&passwo"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:40.466"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Filip_Nikic&password=AMG4vdB6XW&type=m"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Filip_Nikic&password=AMG4vdB6XW"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Filip_Nikic&password=AMG4vdB6XW&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eYM3WeLK6d/jFyPMPieCU/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Filip_Nikic/AMG4vdB6XW/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eYM3WeLK6d/jFyPMPieCU/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Filip_Nikic/AMG4vdB6XW/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/eYM3WeLK6d/jFyPMPieCU/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Filip_Nikic/AMG4vdB6XW/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eYM3WeLK6d/jFyPMPieCU/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Filip_Nikic/AMG4vdB6XW/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/eYM3WeLK6d/jFyPMPieCU/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Filip_Nikic/AMG4vdB6XW/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/eYM3WeLK6d/jFyPMPieCU/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Filip_Nikic/AMG4vdB6XW/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 701 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=fKWS3avbhz&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:41.120"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=fKWS3avbhz&password=ilgcpbqPbH&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=fKWS3avbhz&password=ilgcpbqPbH"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=fKWS3avbhz&password=ilgcpbqPbH&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 703 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=gCCvMf54a4&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:41.169"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=gCCvMf54a4&password=VqQKKV8dlR&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=gCCvMf54a4&password=VqQKKV8dlR"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=gCCvMf54a4&password=VqQKKV8dlR&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/fKWS3avbhz/ilgcpbqPbH/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/gCCvMf54a4/VqQKKV8dlR/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/fKWS3avbhz/ilgcpbqPbH/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/gCCvMf54a4/VqQKKV8dlR/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/fKWS3avbhz/ilgcpbqPbH/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/gCCvMf54a4/VqQKKV8dlR/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/fKWS3avbhz/ilgcpbqPbH/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/gCCvMf54a4/VqQKKV8dlR/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/fKWS3avbhz/ilgcpbqPbH/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/gCCvMf54a4/VqQKKV8dlR/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/fKWS3avbhz/ilgcpbqPbH/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/gCCvMf54a4/VqQKKV8dlR/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 696 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=gnkfgz@hkFk&passwo"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:41.816"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=gnkfgz@hkFk&password=KQoaU5pKFp&type=m"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=gnkfgz@hkFk&password=KQoaU5pKFp"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=gnkfgz@hkFk&password=KQoaU5pKFp&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 698 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=GVnMVkWnuV&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:41.867"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=GVnMVkWnuV&password=nF43xP6ZhW&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=GVnMVkWnuV&password=nF43xP6ZhW"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=GVnMVkWnuV&password=nF43xP6ZhW&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/gnkfgz@hkFk/KQoaU5pKFp/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/GVnMVkWnuV/nF43xP6ZhW/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/gnkfgz@hkFk/KQoaU5pKFp/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/GVnMVkWnuV/nF43xP6ZhW/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/gnkfgz@hkFk/KQoaU5pKFp/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/GVnMVkWnuV/nF43xP6ZhW/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/gnkfgz@hkFk/KQoaU5pKFp/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/GVnMVkWnuV/nF43xP6ZhW/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/gnkfgz@hkFk/KQoaU5pKFp/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/GVnMVkWnuV/nF43xP6ZhW/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/gnkfgz@hkFk/KQoaU5pKFp/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/GVnMVkWnuV/nF43xP6ZhW/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 710 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Hari_Kudic&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:42.526"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Hari_Kudic&password=R3HttJGgHHUd&type="
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Hari_Kudic&password=R3HttJGgHHU"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Hari_Kudic&password=R3HttJGgHHUd&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 709 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=HNDC85xG6l&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:42.576"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=HNDC85xG6l&password=zuZYA9RcW1&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=HNDC85xG6l&password=zuZYA9RcW1"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=HNDC85xG6l&password=zuZYA9RcW1&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Hari_Kudic/R3HttJGgHHUd/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/HNDC85xG6l/zuZYA9RcW1/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Hari_Kudic/R3HttJGgHHUd/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/HNDC85xG6l/zuZYA9RcW1/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Hari_Kudic/R3HttJGgHHUd/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/HNDC85xG6l/zuZYA9RcW1/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Hari_Kudic/R3HttJGgHHUd/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/HNDC85xG6l/zuZYA9RcW1/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Hari_Kudic/R3HttJGgHHUd/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/HNDC85xG6l/zuZYA9RcW1/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Hari_Kudic/R3HttJGgHHUd/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/HNDC85xG6l/zuZYA9RcW1/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 701 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=HY3CWR@aQ4J&passwo"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:43.227"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=HY3CWR@aQ4J&password=Wqvk5nq2cs&type=m"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=HY3CWR@aQ4J&password=Wqvk5nq2cs"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=HY3CWR@aQ4J&password=Wqvk5nq2cs&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=I_Vlahovic&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:43.276"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=I_Vlahovic&password=UvR4TP3rwF&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=I_Vlahovic&password=UvR4TP3rwF"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=I_Vlahovic&password=UvR4TP3rwF&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/HY3CWR@aQ4J/Wqvk5nq2cs/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/I_Vlahovic/UvR4TP3rwF/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/HY3CWR@aQ4J/Wqvk5nq2cs/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/I_Vlahovic/UvR4TP3rwF/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/HY3CWR@aQ4J/Wqvk5nq2cs/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/I_Vlahovic/UvR4TP3rwF/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/HY3CWR@aQ4J/Wqvk5nq2cs/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/I_Vlahovic/UvR4TP3rwF/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/HY3CWR@aQ4J/Wqvk5nq2cs/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/I_Vlahovic/UvR4TP3rwF/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/HY3CWR@aQ4J/Wqvk5nq2cs/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/I_Vlahovic/UvR4TP3rwF/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 701 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Ivica_Pavicic&pass"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:43.928"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Ivica_Pavicic&password=2epoQZS3N2&type"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Ivica_Pavicic&password=2epoQZS3"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Ivica_Pavicic&password=2epoQZS3N2&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Ivo_Maric_Dejo&pas"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:43.976"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Ivo_Maric_Dejo&password=mpEuokbtmp&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Ivo_Maric_Dejo&password=mpEuokb"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Ivo_Maric_Dejo&password=mpEuokbtmp&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ivica_Pavicic/2epoQZS3N2/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ivo_Maric_Dejo/mpEuokbtmp/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ivica_Pavicic/2epoQZS3N2/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ivo_Maric_Dejo/mpEuokbtmp/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Ivica_Pavicic/2epoQZS3N2/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Ivo_Maric_Dejo/mpEuokbtmp/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ivica_Pavicic/2epoQZS3N2/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ivo_Maric_Dejo/mpEuokbtmp/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ivica_Pavicic/2epoQZS3N2/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Ivo_Maric_Dejo/mpEuokbtmp/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Ivica_Pavicic/2epoQZS3N2/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Ivo_Maric_Dejo/mpEuokbtmp/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 701 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=j6XNXt9xSr&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:44.629"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=j6XNXt9xSr&password=nA4GU3CxT7&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=j6XNXt9xSr&password=nA4GU3CxT7"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=j6XNXt9xSr&password=nA4GU3CxT7&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Jakov_Admir&passwo"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:44.676"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Jakov_Admir&password=i5fisEYksB&type=m"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Jakov_Admir&password=i5fisEYksB"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Jakov_Admir&password=i5fisEYksB&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/j6XNXt9xSr/nA4GU3CxT7/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Jakov_Admir/i5fisEYksB/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/j6XNXt9xSr/nA4GU3CxT7/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Jakov_Admir/i5fisEYksB/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/j6XNXt9xSr/nA4GU3CxT7/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Jakov_Admir/i5fisEYksB/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/j6XNXt9xSr/nA4GU3CxT7/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Jakov_Admir/i5fisEYksB/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/j6XNXt9xSr/nA4GU3CxT7/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Jakov_Admir/i5fisEYksB/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/j6XNXt9xSr/nA4GU3CxT7/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Jakov_Admir/i5fisEYksB/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 701 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Janja_Lozancic&pas"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:45.330"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Janja_Lozancic&password=0vsnu1rPLM&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Janja_Lozancic&password=0vsnu1r"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Janja_Lozancic&password=0vsnu1rPLM&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Jovan_Lazarevics&p"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:45.376"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Jovan_Lazarevics&password=lJLsi3hnRX&t"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Jovan_Lazarevics&password=lJLsi"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Jovan_Lazarevics&password=lJLsi3hnRX&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Janja_Lozancic/0vsnu1rPLM/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Jovan_Lazarevics/lJLsi3hnRX/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Janja_Lozancic/0vsnu1rPLM/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Jovan_Lazarevics/lJLsi3hnRX/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Janja_Lozancic/0vsnu1rPLM/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Jovan_Lazarevics/lJLsi3hnRX/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Janja_Lozancic/0vsnu1rPLM/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Jovan_Lazarevics/lJLsi3hnRX/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Janja_Lozancic/0vsnu1rPLM/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Jovan_Lazarevics/lJLsi3hnRX/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Janja_Lozancic/0vsnu1rPLM/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Jovan_Lazarevics/lJLsi3hnRX/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=KfRMcRwnm7&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:46.030"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=KfRMcRwnm7&password=FsmsIxBE6p&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=KfRMcRwnm7&password=FsmsIxBE6p"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=KfRMcRwnm7&password=FsmsIxBE6p&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Krecar_mladji&pass"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:46.076"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Krecar_mladji&password=XkRVgVynbp&type"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Krecar_mladji&password=XkRVgVyn"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Krecar_mladji&password=XkRVgVynbp&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/KfRMcRwnm7/FsmsIxBE6p/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Krecar_mladji/XkRVgVynbp/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/KfRMcRwnm7/FsmsIxBE6p/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Krecar_mladji/XkRVgVynbp/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/KfRMcRwnm7/FsmsIxBE6p/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Krecar_mladji/XkRVgVynbp/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/KfRMcRwnm7/FsmsIxBE6p/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Krecar_mladji/XkRVgVynbp/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/KfRMcRwnm7/FsmsIxBE6p/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Krecar_mladji/XkRVgVynbp/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/KfRMcRwnm7/FsmsIxBE6p/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Krecar_mladji/XkRVgVynbp/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 767 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=KuyJnQv5SLdT&passw"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:46.797"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=KuyJnQv5SLdT&password=P6RDR3XreV&type="
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=KuyJnQv5SLdT&password=P6RDR3Xre"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=KuyJnQv5SLdT&password=P6RDR3XreV&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 769 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=m58A3WMdG4&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:46.845"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=m58A3WMdG4&password=y2pAjEWade&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=m58A3WMdG4&password=y2pAjEWade"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=m58A3WMdG4&password=y2pAjEWade&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/KuyJnQv5SLdT/P6RDR3XreV/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/m58A3WMdG4/y2pAjEWade/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/KuyJnQv5SLdT/P6RDR3XreV/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/m58A3WMdG4/y2pAjEWade/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/KuyJnQv5SLdT/P6RDR3XreV/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/m58A3WMdG4/y2pAjEWade/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/KuyJnQv5SLdT/P6RDR3XreV/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/m58A3WMdG4/y2pAjEWade/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/KuyJnQv5SLdT/P6RDR3XreV/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/m58A3WMdG4/y2pAjEWade/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/KuyJnQv5SLdT/P6RDR3XreV/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/m58A3WMdG4/y2pAjEWade/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 697 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Marko_Hamburg&pass"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:47.494"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Marko_Hamburg&password=s74bRlcrlz&type"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Marko_Hamburg&password=s74bRlcr"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Marko_Hamburg&password=s74bRlcrlz&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 701 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Miloje_Savicic&pas"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:47.546"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Miloje_Savicic&password=zPgzCM5gHF&typ"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Miloje_Savicic&password=zPgzCM5"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Miloje_Savicic&password=zPgzCM5gHF&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Marko_Hamburg/s74bRlcrlz/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Miloje_Savicic/zPgzCM5gHF/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Marko_Hamburg/s74bRlcrlz/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Miloje_Savicic/zPgzCM5gHF/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Marko_Hamburg/s74bRlcrlz/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Miloje_Savicic/zPgzCM5gHF/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Marko_Hamburg/s74bRlcrlz/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Miloje_Savicic/zPgzCM5gHF/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Marko_Hamburg/s74bRlcrlz/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Miloje_Savicic/zPgzCM5gHF/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Marko_Hamburg/s74bRlcrlz/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Miloje_Savicic/zPgzCM5gHF/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 703 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=MkQrjGz7r9&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:48.198"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=MkQrjGz7r9&password=MIDl1vJpuF&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=MkQrjGz7r9&password=MIDl1vJpuF"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=MkQrjGz7r9&password=MIDl1vJpuF&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=mVygSt3h5w&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:48.246"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=mVygSt3h5w&password=NOWUmx2o4G&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=mVygSt3h5w&password=NOWUmx2o4G"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=mVygSt3h5w&password=NOWUmx2o4G&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/MkQrjGz7r9/MIDl1vJpuF/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/mVygSt3h5w/NOWUmx2o4G/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/MkQrjGz7r9/MIDl1vJpuF/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/mVygSt3h5w/NOWUmx2o4G/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/MkQrjGz7r9/MIDl1vJpuF/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/mVygSt3h5w/NOWUmx2o4G/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/MkQrjGz7r9/MIDl1vJpuF/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/mVygSt3h5w/NOWUmx2o4G/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/MkQrjGz7r9/MIDl1vJpuF/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/mVygSt3h5w/NOWUmx2o4G/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/MkQrjGz7r9/MIDl1vJpuF/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/mVygSt3h5w/NOWUmx2o4G/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 696 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=Nasko_Wels&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:48.894"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=Nasko_Wels&password=RalHrO4VSW&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=Nasko_Wels&password=RalHrO4VSW"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=Nasko_Wels&password=RalHrO4VSW&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 699 ms
+[PLAYABLE_WORKER] >>> checkPlayable START: "http://v2pro.online:8080/get.php?username=OKeDMfLTMI&passwor"
+[TIMING_SLOT] server= "http://v2pro.online:8080" active_slots= 2 time= "22:22:48.945"
+
+╔════════════════════════════════════════════════════════════════╗
+║                   CHECKPLAYABLE WIRESHARK ANALIZA              ║
+║                     Stream Test Je Jedini Sudija               ║
+╚════════════════════════════════════════════════════════════════╝
+
+[ULAZ] link: "http://v2pro.online:8080/get.php?username=OKeDMfLTMI&password=cdEj3uguwf&type=m3"
+[ULAZ] base: "http://v2pro.online:8080"
+[ULAZ] apiUrl: "http://v2pro.online:8080/player_api.php?username=OKeDMfLTMI&password=cdEj3uguwf"
+
+┌─── FAZA 1: M3U DOWNLOAD ───────────────────────────┐
+[M3U REQUEST]
+  URL:  "http://v2pro.online:8080/get.php?username=OKeDMfLTMI&password=cdEj3uguwf&type=m3u_plus"
+  Method: GET
+  User-Agent:  "Lavf53.32.100"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Nasko_Wels/RalHrO4VSW/1.ts"
+[M3U RESPONSE]
+  Status:  403
+  Body Size:  0  bytes
+  Content-Type:  "text/html; charset=UTF-8"
+  Body[:300]:  ""
+└─────────────────────────────────────────────────────┘
+
+┌─── FAZA 2: STREAM TEST (JEDINI SUDIJA) ────────────┐
+
+[FALLBACK] M3U nije dao streamove → direktni test
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/OKeDMfLTMI/cdEj3uguwf/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Nasko_Wels/RalHrO4VSW/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/OKeDMfLTMI/cdEj3uguwf/1.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Nasko_Wels/RalHrO4VSW/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/OKeDMfLTMI/cdEj3uguwf/1.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Nasko_Wels/RalHrO4VSW/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/OKeDMfLTMI/cdEj3uguwf/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/Nasko_Wels/RalHrO4VSW/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/live/OKeDMfLTMI/cdEj3uguwf/100.m3u8"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/Nasko_Wels/RalHrO4VSW/100.ts"
+  Status:  403  | Body:  0  bytes
+
+[DIRECT STREAM TEST]
+  URL:  "http://v2pro.online:8080/OKeDMfLTMI/cdEj3uguwf/100.ts"
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 702 ms
+  Status:  403  | Body:  0  bytes
+└─────────────────────────────────────────────────────┘
+
+[FINALNA ODLUKA] Testovano  6  stream-ova | Playable:  0
+❌ NIJE PLAYABLE
+
+[PLAYABLE_WORKER] <<< checkPlayable END, ok= false trajanje= 700 ms
