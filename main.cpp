@@ -1800,25 +1800,10 @@ public slots:
     }
 
     void runPlayable(const QList<QString> &links) {
-        qDebug() << "\n\n";
-        qDebug() << "╔════════════════════════════════════════════════════════════╗";
-        qDebug() << "║         PLAYABLE CHECK — FULL DEBUG START                  ║";
-        qDebug() << "╚════════════════════════════════════════════════════════════╝";
-        qDebug() << QString("Ukupno lista za proveru: %1").arg(links.size());
-        qDebug() << "Vrijeme pocetka: " << QDateTime::currentDateTime().toString("HH:mm:ss.zzz");
-        
-        for (int i = 0; i < links.size(); i++) {
-            qDebug() << QString("[LISTA %1] %2").arg(i+1).arg(links[i].left(100));
-        }
-        
-        qDebug() << "\n[INIT] Počinje resetovanje globalnih stanja...\n";
-
         qDebug() << "[PLAYABLE_WORKER] runPlayable START, linkova=" << links.size();
 
-        // === INICIJALIZUJ SCAN VRIJEME ===
-        m_scanStartTime = QDateTime::currentDateTime();
-
         // Reset TCP dead countera za svako novo skeniranje
+        // (sprečava da prethodni scan zagadi stanje za novi)
         {
             std::lock_guard<std::mutex> lk(g_tcpDeadMutex);
             g_serverConsecTimeouts.clear();
@@ -2007,15 +1992,6 @@ public slots:
     }
     // === END ADVANCED DEBUG ===
 
-    // === FINALNI REPORT ===
-    qDebug() << "\n\n";
-    qDebug() << "╔════════════════════════════════════════════════════════════╗";
-    qDebug() << "║         PLAYABLE CHECK — ZAVRŠENO                         ║";
-    qDebug() << "╚════════════════════════════════════════════════════════════╝";
-    qDebug() << "Vrijeme završetka: " << QDateTime::currentDateTime().toString("HH:mm:ss.zzz");
-    qDebug() << "Procenat završetka: " << (m_stopRequested.load() ? "ZAUSTAVLJENO" : "100%");
-    qDebug() << "\n";
-
     emit checkFinished(m_stopRequested.load());
     }
 
@@ -2081,7 +2057,6 @@ public slots:
     std::atomic<bool> m_inRetryPhase;
     std::atomic<bool> m_poolDmDetected{false};
     QString m_vpnTag;
-    QDateTime m_scanStartTime;  // ← NOVO!
 
     // CF ban tracking po serveru za Playable proveru
     std::mutex m_cfBanMutex;
@@ -2202,29 +2177,14 @@ public slots:
     if (ctIsMedia && body.size() >= 512) return true;
     return false;
 }
-        bool checkPlayable(const QString &link, CheckResult &outResult){
-    // === DEBUG: Frame brojač i vrijeme ===
-    static int g_frameNo = 0;
-    g_frameNo++;
-    QDateTime frameStartTime = QDateTime::currentDateTime();
-    
-    // === Ekstraktuiraj username/password ===
-    QString _dbg_username = extractQueryParam(link, "username");
-    QString _dbg_password = extractQueryParam(link, "password");
-    
-    qDebug() << QString("\n[FRAME %1] T=%2ms [USER: %3 | PASS: %4**]")
-        .arg(g_frameNo, 5)
-        .arg((m_scanStartTime.isValid() ? 
-              m_scanStartTime.msecsTo(frameStartTime) : 0))
-        .arg(_dbg_username)
-        .arg(_dbg_password.left(3));
-    
-    outResult.isValid = false;
-    outResult.vpnTag  = m_vpnTag;
+        bool checkPlayable(const QString &link, CheckResult &outResult) {
+        qDebug() << "[CP] ===== checkPlayable ENTER =====" << link.left(60);
+        outResult.isValid = false;
+        outResult.vpnTag  = m_vpnTag;
 
-    QString apiUrl = buildApiUrl(link);
-    
-    qDebug() << QString("[REQUEST] GET %1").arg(apiUrl.left(100));
+        QString apiUrl = buildApiUrl(link);
+        qDebug() << "[PLAYABLE DEBUG] link:" << link.left(80);
+        qDebug() << "[PLAYABLE DEBUG] apiUrl:" << apiUrl.left(80);
         if (apiUrl.isEmpty()) {
             qDebug() << "[PLAYABLE DEBUG] apiUrl prazan → return false";
             return false;
@@ -2419,7 +2379,7 @@ public slots:
                     std::lock_guard<std::mutex> _pslk(g_serverSemMutex);
                     getXuiAnalysis(base)->events.last().activeSlots = g_serverActiveCalls.value(base, 0);
                 }
-               cpr::Response r = cpr::Get(
+                cpr::Response r = cpr::Get(
                     cpr::Url{apiUrl.toStdString()}, cpr::Timeout{effective_timeout},
                     cpr::VerifySsl{false},
                     cpr::Header{{"User-Agent", headers["User-Agent"].toStdString()},
@@ -2434,26 +2394,6 @@ public slots:
                 qDebug() << "[PLAYABLE API]" << apiUrl.left(80)
                          << "status:" << r.status_code
                          << "body[:150]:" << QString::fromStdString(r.text).left(150);
-                
-                // === WIRESHARK-STYLE DEBUG ===
-                {
-                    std::string _apiBodyStart = r.text.substr(0, std::min(r.text.size(), (size_t)150));
-                    QString _apiBodyPreview = QString::fromStdString(_apiBodyStart)
-                        .replace("\n", "\\n").replace("\r", "\\r").left(100);
-                    
-                    std::string _apiCt = r.header.count("Content-Type") ? r.header.at("Content-Type") : "?";
-                    
-                    qDebug() << QString("[RESPONSE] Status=%1 | Bytes=%2 | Time=%3ms | CT=%4")
-                        .arg(r.status_code).arg(r.text.size()).arg(latency)
-                        .arg(QString::fromStdString(_apiCt).left(30));
-                    
-                    if (r.text.size() <= 200) {
-                        qDebug() << QString("[BODY] %1").arg(_apiBodyPreview);
-                    } else {
-                        qDebug() << QString("[BODY_PREVIEW] %1...").arg(_apiBodyPreview);
-                    }
-                }
-                // === END WIRESHARK DEBUG ===
                 // === ADVANCED DEBUG ===
                 {
                     std::string bodyStart150 = r.text.substr(0, std::min(r.text.size(), (size_t)150));
@@ -2479,63 +2419,126 @@ public slots:
                     hard_fail = true; return 0;
                 }
                 if (r.status_code == 403) {
-    // ✅ PRVO: Provjeri da li je CF WAF/IP ban (CF-RAY header)
-    bool hasCfRay = r.header.count("CF-RAY") > 0 || r.header.count("cf-ray") > 0;
-    bool hasCfServer = false;
-    if (r.header.count("Server") > 0)
-        hasCfServer = r.header.at("Server").find("cloudflare") != std::string::npos;
-    if (r.header.count("server") > 0)
-        hasCfServer = hasCfServer || r.header.at("server").find("cloudflare") != std::string::npos;
+                    // ── DIJAGNOSTIKA: loguj sve headere koje server šalje uz 403 ──
+                    qDebug() << "[403 DIAG] Server=" << base
+                             << "url=" << apiUrl.left(80);
+                    for (const auto &hdr : r.header)
+                        qDebug() << "  [403 HDR]"
+                                 << QString::fromStdString(hdr.first)
+                                 << ":" << QString::fromStdString(hdr.second);
+                    qDebug() << "  [403 BODY]" << QString::fromStdString(r.text).left(200);
 
-    // CF ban → hard_fail
-    if (hasCfRay || hasCfServer) {
-        qDebug() << "[403 CF-BAN] Cloudflare IP ban → hard_fail";
-        {
-            std::lock_guard<std::mutex> lk(m_cfBanMutex);
-            int cnt = ++m_cfBanCount[base];
-            if (cnt == CF_BAN_THRESHOLD && !m_cfBanReported.contains(base)) {
-                m_cfBanReported.insert(base);
-                QString now = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
-                QString report = QString(
-                    "Server: %1\nStatus: 🔒 CLOUDFLARE IP BAN (HTTP 403)\n"
-                    "Vreme: %2\n"
-                    "BAN IP — Cloudflare blokira tvoju IP adresu za ovaj server."
-                ).arg(base, now);
-                emit serverBanDetected(base, report);
-            }
-        }
-        hard_fail = true;
-        return 0;
-    }
+                    // ── Proveri da li je CF WAF/IP ban (CF-RAY header prisutan) ──
+                    bool hasCfRay = r.header.count("CF-RAY") > 0 ||
+                                    r.header.count("cf-ray") > 0;
+                    bool hasCfServer = false;
+                    if (r.header.count("Server") > 0)
+                        hasCfServer = r.header.at("Server").find("cloudflare") != std::string::npos;
+                    if (r.header.count("server") > 0)
+                        hasCfServer = hasCfServer || r.header.at("server").find("cloudflare") != std::string::npos;
 
-    // ✅ nginx 403 + PRAZAN body = rate-limit, NIJE hard_fail
-    if (r.text.empty() || r.text.size() < 200) {
-        qDebug() << "[403 NGINX] Prazan body → rate-limit, kratka pauza + retry";
-        {
-            auto* _rt403 = getReactThrottle(base);
-            {
-                std::lock_guard<std::mutex> _lk403(_rt403->mx);
-                _rt403->isAggressive = true;
-                _rt403->delayMs = qMin(_rt403->maxDelayMs, _rt403->delayMs + 3000);
-                _rt403->minDelayMs = qMax(_rt403->minDelayMs, 1500);
-            }
-        }
-        return 2;  // ← Retry, ne hard_fail!
-    }
-
-    // nginx 403 + sadržaj = provjeri šta piše
-    std::string bodyLow = r.text;
-    std::transform(bodyLow.begin(), bodyLow.end(), bodyLow.begin(), ::tolower);
-    if (bodyLow.find("blip") != std::string::npos) {
-        qDebug() << "[403 WAF] Blip detected → hard_fail";
-        hard_fail = true;
-        return 0;
-    }
-
-    // Default: rate-limit retry
-    qDebug() << "[403 NGINX] Sadržaj prisutan → rate-limit, retry";
-    return 2;
+                    std::string bodyLow = r.text;
+                    std::transform(bodyLow.begin(), bodyLow.end(), bodyLow.begin(), ::tolower);
+                    bool isIpBan = bodyLow.find("not authorized") != std::string::npos ||
+                                   bodyLow.find("forbidden")      != std::string::npos ||
+                                   bodyLow.find("banned")         != std::string::npos ||
+                                   bodyLow.find("blocked")        != std::string::npos;
+                    bool isAuthFail = bodyLow.find("auth") != std::string::npos &&
+                                      bodyLow.find("0")    != std::string::npos;
+                    qDebug() << "  [403 CLASSIFY] isIpBan=" << isIpBan
+         << "isAuthFail=" << isAuthFail
+         << "hasCfRay=" << hasCfRay
+         << "hasCfServer=" << hasCfServer;
+{
+    auto* _rt403diag = getReactThrottle(base);
+    std::lock_guard<std::mutex> _lk403diag(_rt403diag->mx);
+    qDebug() << "  [403 RATE_STATE] delayMs=" << _rt403diag->delayMs
+             << "minDelayMs=" << _rt403diag->minDelayMs
+             << "total429=" << _rt403diag->total429
+             << "total403=" << _rt403diag->total403
+             << "isAggressive=" << _rt403diag->isAggressive
+             << "consecFail=" << _rt403diag->consecFail;
+    qDebug() << "  [403 XUI_STATE] episodeCount=" << g_xuiEpisodeCount.value(base, 0)
+             << "debugCount=" << g_xuiDebugCount.value(base, 0)
+             << "inDebugMode=" << isXuiDebugMode(base);
 }
+{
+    std::lock_guard<std::mutex> _lkslots(g_serverSemMutex);
+    qDebug() << "  [403 SLOTS] activeSlots=" << g_serverActiveCalls.value(base, 0);
+}
+{
+    std::lock_guard<std::mutex> _lktcp(g_tcpDeadMutex);
+    qDebug() << "  [403 TCP] consecTimeouts=" << g_serverConsecTimeouts.value(base, 0);
+}
+qDebug() << "  [403 VERDICT] Nginx rate-limit — analiza stanja u trenutku bana";
+
+                    // CF 403 = moja IP je blokirana, ali SERVER JE ŽIV
+                    // Ne postavljaj hard_fail — samo označi kao "blocked" i preskoči
+                    // Ovo se dešava kada Cloudflare blokira naš IP ali ne i server
+                    if (hasCfRay || hasCfServer) {
+                        qDebug() << "[403 CF-BAN] Cloudflare IP ban na" << base
+                                 << "→ tretiramo kao blocked, ne hard_fail";
+                        {
+                            std::lock_guard<std::mutex> lk(m_cfBanMutex);
+                            int cnt = ++m_cfBanCount[base];
+                            if (cnt == CF_BAN_THRESHOLD && !m_cfBanReported.contains(base)) {
+                                m_cfBanReported.insert(base);
+                                QString now = QDateTime::currentDateTime().toString("dd.MM.yyyy HH:mm:ss");
+                                QString report = QString(
+                                    "Server: %1\nStatus: 🔒 CLOUDFLARE IP BAN (HTTP 403)\n"
+                                    "Vreme: %2\n"
+                                    "BAN IP — Cloudflare blokira tvoju IP adresu za ovaj server.\n"
+                                    "Koristi VPN dugme za proveru sa drugom IP adresom."
+                                ).arg(base, now);
+                                emit serverBanDetected(base, report);
+                        }
+                    }
+                    return 0;
+                    }
+
+                    // Nginx 403 bez CF headera = privremeni rate-limit
+                    {
+                        auto* _rt403 = getReactThrottle(base);
+                        {
+                            std::lock_guard<std::mutex> _lk403(_rt403->mx);
+                            _rt403->isAggressive = true;
+                            _rt403->delayMs = qMin(_rt403->maxDelayMs, _rt403->delayMs + 3000);
+                            _rt403->minDelayMs = qMax(_rt403->minDelayMs, 1500);
+                        }
+                        bool _shouldReport = false;
+                        {
+                            std::lock_guard<std::mutex> _lkn(m_nginxBanMutex);
+                            if (!m_nginxBanReported.contains(base)) {
+                                m_nginxBanReported.insert(base);
+                                _shouldReport = true;
+                            }
+                        }
+                        if (_shouldReport) {
+                            // Odredi pravi razlog 403
+                            QString _razlog;
+                            if (isXuiSlowServer(base)) {
+                                _razlog = "Razlog: Server je u XUI Debug Mode (overload).\n";
+                            } else {
+                                _razlog = "Server blokira IP adresu.\n";
+                            }
+                            QString _report = QString(
+                                "Server: %1\n"
+                                "Status: ⚠️ HTTP 403 — TRENUTNO SI BANOVAN!\n"
+                                "%2\n"
+                                "Skeniranje je automatski zaustavljeno."
+                            ).arg(base, _razlog);
+                            emit serverBanDetected(base, _report);
+                            // ODMAH STOPUJ — dalje skeniranje ovog servera nema smisla
+                            m_stopRequested.store(true, std::memory_order_release);
+                            qDebug() << "[403 NGINX BAN] Skeniranje ZAUSTAVLJENO zbog nginx bana na" << base;
+        hard_fail = true;
+        return 0;
+    }
+    qDebug() << "[403 NGINX RATELIMIT] BAN detektovan na" << base
+             << "→ server preskocen";
+}
+return 2; // retry — nije hard_fail
+                }
                     if (r.status_code == 521 || r.status_code == 522 ||
                     r.status_code == 530) {
                     qDebug() << "[CF-DETECT] Cloudflare status=" << r.status_code
@@ -2544,71 +2547,21 @@ public slots:
                 }
                 if (r.status_code == 200) {
                     setCachedState(base, ServerCache::State::Up, latency);
-                    
-                    // ✅ WIRESHARK REDOSLIJED: Content-Type PRVI (prije JSON parsiranja)
                     std::string ct = r.header.count("Content-Type") ? r.header.at("Content-Type") : "";
                     std::string ctLow = ct;
                     std::transform(ctLow.begin(), ctLow.end(), ctLow.begin(), ::tolower);
-                    
-                    // ✅ ČINJENICA 1 iz Wiresharka: Ako je application/json → VALIDNA LISTA
-                    if (ctLow.find("application/json") != std::string::npos) {
-                        qDebug() << "[API PARSE] ✅ Content-Type=application/json → VALIDNA LISTA";
-                        
-                        // ═══ ADVANCED DEBUG: JSON validacija ═══
-                        {
-                            std::string bodyStart150 = r.text.substr(0, std::min(r.text.size(), (size_t)150));
-                            debugRecordRequest(base, "API", r.status_code, latency,
-                                               r.text.size(), bodyStart150);
-                            advancedLog("API", apiUrl.left(80), base,
-                                        r.status_code, r.text, r.header,
-                                        latency, (int)r.error.code);
-                        }
-                        // ═══ END ADVANCED DEBUG ═══
-                        
-                        api_auth_ok = true;
-                        return 1;  // OK — nastavi na M3U ili stream
-                    }
-                    
-                    // ✅ ČINJENICA 2 iz Wiresharka: Ako je text/html → provjeri što piše u body-ju
                     if (ctLow.find("text/html") != std::string::npos) {
-                        std::string bodyStart = r.text.substr(0, std::min(r.text.size(), (size_t)500));
-                        std::string bodyLow = bodyStart;
-                        std::transform(bodyLow.begin(), bodyLow.end(), bodyLow.begin(), ::tolower);
-
-                        // ❌ INVALID_CREDENTIALS → instant hard_fail, NE čekaj retry!
-                        if (bodyLow.find("invalid_credentials") != std::string::npos ||
-                            bodyLow.find("username or password is invalid") != std::string::npos ||
-                            bodyLow.find("invalid account") != std::string::npos) {
-                            qDebug() << "[API PARSE] ❌ text/html + INVALID_CREDENTIALS → hard_fail ODMAH";
-                            qDebug() << "           Kredencijali NISU validni — nema retry-ja!";
-                            hard_fail = true; 
-                            return 0;  // Nema retry!
+                        // Proveri da li je XUI Debug Mode (privremeni overload)
+                        std::string bodyStart = r.text.substr(0, qMin(r.text.size(), (size_t)60));
+                        bool isXuiDebug = bodyStart.find("XUI.one") != std::string::npos ||
+                                          bodyStart.find("Debug Mode") != std::string::npos;
+                       if (isXuiDebug) {
+                            recordXuiDebug(base);
+                            qDebug() << "[API XUI DEBUG] DM na API → return 3 (preskoči retry, idi na stream fallback)";
+                            return 3; // DM signal — ne čekamo, ne retryujemo API
                         }
-
-                        // ❌ PRVO provjeri INVALID_CREDENTIALS — nikakav retry!
-if (bodyLow.find("invalid_credentials") != std::string::npos ||
-    bodyLow.find("username or password is invalid") != std::string::npos ||
-    bodyLow.find("invalid account") != std::string::npos) {
-    qDebug() << "[API PARSE] ❌ text/html + INVALID_CREDENTIALS → hard_fail ODMAH";
-    hard_fail = true; 
-    return 0;
-}
-
-// 🟡 TEK SADA provjeri XUI Debug Mode (samo ako NEMA INVALID_CREDENTIALS)
-if (bodyLow.find("xui.one") != std::string::npos ||
-    bodyLow.find("debug mode") != std::string::npos) {
-    qDebug() << "[API PARSE] 🟡 text/html + XUI Debug Mode → retry signal";
-    recordXuiDebug(base);
-    return 3;
-}
-
-// text/html ali nije INVALID i nije Debug Mode → nepoznato
-qDebug() << "[API PARSE] ❓ text/html ali nije poznata greška";
-hard_fail = true;
-return 0;
+                        hard_fail = true; return 0;
                     }
-                    
-                    // ✅ Ako je nešto drugo (ne JSON, ne HTML) → pokušaj JSON parsirati (za sigurnost)
                     try {
                         auto d  = json::parse(r.text);
                         auto ui = d.value("user_info", json::object());
@@ -2764,25 +2717,19 @@ if (eps >= 5) {
             return false;
         }
 
-        // JEDINI SUDIJA: Stream test!
-            // Čak i ako je API u Debug Mode-u, stream može biti OK!
-            if (!api_auth_ok || isXuiDebugMode(base)) {
-            // API bio u Debug Mode/timeout ali stream može biti OK!
-            // Testiraj fallback stream URL sa keširanim movie ID-om
-            
-            qDebug() << "[CP] DEBUG: api_auth_ok=" << api_auth_ok 
-                     << "inDebugMode=" << isXuiDebugMode(base)
-                     << "→ pokušavamo stream fallback test";
-                // Debug Mode je aktivan ALI api_auth_ok je FALSE
-                // Znači nemamo auth podatke — preskočimo M3U fallback
-                // ALI NE PRESKAČEMO STREAM FALLBACK!
-                qDebug() << "[CP] DM aktivan ali nema api_auth_ok → testiramo stream fallback";
-                // Nastavi na stream fallback (ne return!)
-            }
-            
-            if (api_auth_ok) {
-                // Normalni tok kada znamo credencijale
-                return fillResult();
+        if (!api_auth_ok) {
+            // API bio u Debug Mode/timeout ali server nije hard-fail →
+            // pokušaj stream sa keširanim movie ID (STREAM JE JEDINI SUDIJA!)
+            // Ako je DM aktivan, stream test bi ISTO vratio DM → preskoči, idi u DM retry
+            if (isXuiDebugMode(base) && !hard_fail) {
+                {
+                    std::lock_guard<std::mutex> _lkDmFb(g_movieIdCacheMutex);
+                    if (g_movieStreamId.contains(base)) {
+                        outResult.needsDmRetry = true;
+                    }
+                }
+                qDebug() << "[CP] DM aktivan → skip stream fallback, direktno u DM retry";
+                return false;
             }
             if (!hard_fail && !m_stopRequested.load(std::memory_order_acquire)) {
                 QString _fbUrl;
@@ -2898,21 +2845,6 @@ if (eps >= 5) {
                         return true;
                     }}
                 );
-                
-                int _m3uRespMs = _m3u_t0.msecsTo(QDateTime::currentDateTime());
-                
-                // === WIRESHARK-STYLE DEBUG ===
-                {
-                    std::string _m3uBodyStart = m3u_raw.substr(0, std::min(m3u_raw.size(), (size_t)150));
-                    QString _m3uBodyPreview = QString::fromStdString(_m3uBodyStart)
-                        .replace("\n", "\\n").left(100);
-                    
-                    qDebug() << QString("[M3U_RESPONSE] Status=%1 | Bytes=%2 | Time=%3ms")
-                        .arg(r.status_code).arg(m3u_raw.size()).arg(_m3uRespMs);
-                    qDebug() << QString("[M3U_BODY] %1...").arg(_m3uBodyPreview);
-                }
-                // === END WIRESHARK DEBUG ===
-                
                 qDebug() << "[PLAYABLE M3U]" << m3uUrl.left(80)
                          << "status:" << r.status_code
                          << "m3u_size:" << m3u_raw.size();
@@ -3178,19 +3110,6 @@ if (!parsedOk || added == 0) {
                     int status = stopped_early
                         ? ((r.status_code != 0) ? r.status_code : 200)
                         : r.status_code;
-                    
-                    // === WIRESHARK-STYLE DEBUG ===
-                    {
-                        std::string _streamBodyStart = body.substr(0, std::min(body.size(), (size_t)50));
-                        QString _streamBodyHex = QByteArray(_streamBodyStart.data(), _streamBodyStart.size()).toHex();
-                        
-                        qDebug() << QString("[STREAM_RESPONSE] Status=%1 | Bytes=%2 | Time=%3ms | Type=%4")
-                            .arg(status).arg(body.size()).arg(-1).arg(sc.type);
-                        qDebug() << QString("[STREAM_URL] %1").arg(sc.url.left(100));
-                        qDebug() << QString("[STREAM_HEX[:16]] %1").arg(_streamBodyHex.left(32));
-                    }
-                    // === END WIRESHARK DEBUG ===
-                    
                     {
                         std::string _dbgCt = r.header.count("Content-Type") ? r.header.at("Content-Type") : "";
                         std::string _dbgBody50 = body.substr(0, qMin(body.size(), (size_t)50));
@@ -3262,40 +3181,40 @@ if (!parsedOk || added == 0) {
                     // 302 redirect = server živ, stream postoji ali zahteva redirect
                     // Ovo je normalno za XUI.one servere koji redirectuju na CDN
                     if (status == 302 || status == 301 || status == 307 || status == 308) {
-    std::string location = r.header.count("Location") ? r.header.at("Location") : "";
-    if (!location.empty() && location.find("http") == 0) {
-        qDebug() << "[STREAM REDIRECT] Pratim:" << QString::fromStdString(location).left(80);
-        try {
-            std::string body2; bool stopped2 = false;
-            cpr::Response r2 = cpr::Get(
-                cpr::Url{location},
-                cpr::Timeout{m_stopRequested.load() ? 300 : streamTimeoutMs},
-                cpr::VerifySsl{false},
-                cpr::Header{{"User-Agent", headers["User-Agent"].toStdString()},
-                            {"Accept", "*/*"}, {"Connection", "keep-alive"}},
-                cpr::WriteCallback{[&](const std::string_view d, intptr_t) -> bool {
-                    body2.append(d.data(), d.size());
-                    if (body2.size() >= 8192) { stopped2 = true; return false; }
-                    return true;
-                }}
-            );
-            int s2 = r2.status_code;
-            if (stopped2 && s2 == 0) s2 = 200;
-            qDebug() << "[STREAM REDIRECT CDN] status=" << s2 << "bytes=" << body2.size();
-            
-            if ((s2 == 200 || s2 == 206 || stopped2) && body2.size() >= 32) {
-                std::string ct2 = r2.header.count("Content-Type") ? r2.header.at("Content-Type") : "";
-                std::transform(ct2.begin(), ct2.end(), ct2.begin(), ::tolower);
-                if (isRealMediaBody(body2, ct2)) {
-                    xuiAnalyzerAfter(base, s2, false, (int)body2.size());
-                    resetXuiDebug(base);
-                    return fillResult();
-                }
-            }
-        } catch (...) {}
-    }
-    continue;
-}
+                        std::string location = r.header.count("Location") ? r.header.at("Location") : "";
+                        if (!location.empty() && location.find("http") == 0) {
+                            // Prati redirect — jedan korak
+                            try {
+                                std::string body2; bool stopped2 = false;
+                                cpr::Response r2 = cpr::Get(
+                                    cpr::Url{location},
+                                    cpr::Timeout{m_stopRequested.load() ? 300 : streamTimeoutMs},
+                                    cpr::VerifySsl{false},
+                                    cpr::Header{{"User-Agent", headers["User-Agent"].toStdString()},
+                                                {"Accept", "*/*"}, {"Connection", "keep-alive"}},
+                                    cpr::WriteCallback{[&](const std::string_view d, intptr_t) -> bool {
+                                        body2.append(d.data(), d.size());
+                                        if (body2.size() >= 8192) { stopped2 = true; return false; }
+                                        return true;
+                                    }}
+                                );
+                                int s2 = r2.status_code;
+                                if (stopped2 && s2 == 0) s2 = 200;
+                                qDebug() << "[STREAM REDIRECT]" << QString::fromStdString(location).left(80)
+                                         << "status=" << s2 << "bytes=" << body2.size();
+                                if (s2 == 200 || s2 == 206 || stopped2) {
+                                    std::string ct2 = r2.header.count("Content-Type") ? r2.header.at("Content-Type") : "";
+                                    std::transform(ct2.begin(), ct2.end(), ct2.begin(), ::tolower);
+                                    if (isRealMediaBody(body2, ct2)) {
+                                    return fillResult();
+                                }
+                                }
+                            } catch (...) {}
+                        }
+                        // Redirect bez Location ili redirect ne radi — tretiramo kao server živ
+                        // Ali ne možemo potvrditi stream, nastavljamo sa sledećim kanalom
+                        continue;
+                    }
                     if (status != 200 && status != 206) continue;
                     std::string ct = r.header.count("Content-Type") ? r.header.at("Content-Type") : "";
                     std::transform(ct.begin(), ct.end(), ct.begin(), ::tolower);
@@ -3402,10 +3321,6 @@ if (status == 200 && body.size() > 20) {
         }
 
         if (hardFailCount > 0 && hardFailCount == direct_streams.size()) return false;
-        
-        // === FINALNI REZULTAT ===
-        qDebug() << QString("\n[FINAL_RESULT] ❌ %1 FAILED").arg(_dbg_username);
-        
         xuiAnalyzerDumpFinal(base);
         return false;
     }
@@ -5967,10 +5882,7 @@ void OgiXApp::runCheck() {
         connect(currentWorker, &Worker::progressUpdated, this, &OgiXApp::updateProgress, Qt::QueuedConnection);
         connect(currentWorker, &Worker::resultFound,     this, &OgiXApp::handleResult,   Qt::QueuedConnection);
         connect(currentWorker, &Worker::phaseChanged,    this, &OgiXApp::updatePhase,    Qt::QueuedConnection);
-        connect(currentWorker, &Worker::checkFinished, this, [this](bool wasStopped) {
-    qDebug() << "\n[UI_FINAL] checkFinished primljen, wasStopped=" << wasStopped;
-    this->finalizeCheck(wasStopped);
-}, Qt::QueuedConnection);
+        connect(currentWorker, &Worker::checkFinished,   this, &OgiXApp::finalizeCheck,  Qt::QueuedConnection);
         connect(workerThread, &QThread::finished, currentWorker, &QObject::deleteLater);
         connect(workerThread, &QThread::finished, workerThread,  &QObject::deleteLater);
         workerThread->start();
@@ -6019,11 +5931,7 @@ void OgiXApp::stopCheck() {
         connect(currentWorker, &Worker::progressUpdated, this, &OgiXApp::updateProgress, Qt::QueuedConnection);
         connect(currentWorker, &Worker::resultFound,     this, &OgiXApp::handleResult,   Qt::QueuedConnection);
         connect(currentWorker, &Worker::phaseChanged,    this, &OgiXApp::updatePhase,    Qt::QueuedConnection);
-        connect(currentWorker, &Worker::checkFinished, this, [this](bool wasStopped) {
-            qDebug() << "\n[UI_FINAL] checkFinished primljen, wasStopped=" << wasStopped;
-            qDebug() << "[UI_FINAL] singleCount=" << singleCount << "multiCount=" << multiCount;
-            this->finalizeCheck(wasStopped);
-        }, Qt::QueuedConnection);
+        connect(currentWorker, &Worker::checkFinished,   this, &OgiXApp::finalizeCheck,  Qt::QueuedConnection);
         connect(currentWorker, &Worker::serverBanDetected, this,
             [this](const QString &serverBase, const QString &reportText) {
                 Q_UNUSED(serverBase);
@@ -6263,60 +6171,43 @@ void OgiXApp::handleResult(const CheckResult &result) {
 }
 
 void OgiXApp::finalizeCheck(bool wasStopped) {
-    qDebug() << "[FINALIZE] Ulazak, wasStopped=" << wasStopped;
-    qDebug() << "[FINALIZE] singleCount=" << singleCount << "multiCount=" << multiCount;
-    
     isChecking = false;
     checkButton->setEnabled(true); stopButton->setEnabled(false);
     playableButton->setEnabled(true); vpnButton->setEnabled(true); checkerInput->setEnabled(true);
-    
     if (wasStopped) {
         phaseLabel->setText("Zaustavljeno."); phaseLabel->setStyleSheet("color: #ff8c00;");
     } else {
         phaseLabel->setText("Provera završena!"); phaseLabel->setStyleSheet("color: #00ff00;");
-        
-        // Pripremi poruku PRE QTimer-a
-        QString finalMsg = "❌ Skeniranje završeno — nije pronađeno ništa.";
-        
+        QString msg;
         if (currentCheckMode == CheckMode::Playable) {
             int ps = singleCount;
             int pm = multiCount;
-            if (ps > 0 || pm > 0) {
-                finalMsg = QString("🎬 PLAYABLE PROVERA ZAVRŠENA:\nJednokonekcijske: %1\nVišekonekcijske: %2").arg(ps).arg(pm);
-            } else {
-                finalMsg = "🎬 PLAYABLE PROVERA ZAVRŠENA:\nNijedan playable rezultat nije pronađen.";
-            }
+            if (ps > 0 || pm > 0)
+                msg = QString("🎬 PLAYABLE PROVERA ZAVRŠENA:\nJednokonekcijske: %1\nVišekonekcijske: %2").arg(ps).arg(pm);
+            else
+                msg = "🎬 PLAYABLE PROVERA ZAVRŠENA:\nNijedan playable rezultat nije pronađen.";
         } else if (currentCheckMode == CheckMode::Vpn) {
             int vs = vpnSingleCount;
             int vm = vpnMultiCount;
-            if (vs > 0 || vm > 0) {
-                finalMsg = QString("🌍 VPN PROVERA ZAVRŠENA:\nJednokonekcijske: %1\nVišekonekcijske: %2").arg(vs).arg(vm);
-            } else {
-                finalMsg = "🌍 VPN PROVERA ZAVRŠENA:\nNijedan rezultat nije pronađen.";
-            }
+            if (vs > 0 || vm > 0)
+                msg = QString("🌍 VPN PROVERA ZAVRŠENA:\nJednokonekcijske: %1\nVišekonekcijske: %2").arg(vs).arg(vm);
+            else
+                msg = "🌍 VPN PROVERA ZAVRŠENA:\nNijedan rezultat nije pronađen.";
         } else {
             int s = singleCount;
             int m = multiCount;
-            if (s > 0 || m > 0) {
-                finalMsg = QString("✅ PROVERA ZAVRŠENA:\nJednokonekcijske: %1\nVišekonekcijske: %2").arg(s).arg(m);
-            } else {
-                finalMsg = "✅ PROVERA ZAVRŠENA:\nNijedan rezultat nije pronađen.";
-            }
+            if (s > 0 || m > 0)
+                msg = QString("✅ PROVERA ZAVRŠENA:\nJednokonekcijske: %1\nVišekonekcijske: %2").arg(s).arg(m);
+            else
+                msg = "✅ PROVERA ZAVRŠENA:\nNijedan rezultat nije pronađen.";
         }
-        
-        qDebug() << "[FINALIZE_MSG]" << finalMsg;
-        
-        QTimer::singleShot(500, this, [this, finalMsg]() { 
-            qDebug() << "[MESSAGEBOX] Prikazujem:" << finalMsg;
-            QMessageBox::information(this, "✅ Provera završena", finalMsg); 
-        });
+         QTimer::singleShot(500, this, [this, msg]() { QMessageBox::information(this, "✅ Provera završena", msg); });
     }
 }
 
 int main(int argc, char *argv[]) {
     // ── DEBUG FILE LOG ──
-    static QFile logFile("E:/IPTV/UTTILITIES/NOnAME/OgiXwork/VSS OgiXworkMakeM3u/OgiXworkMakeM3u_CPP/build/playable_debug.log");
-    // PROMIJENI "YOUR_USERNAME" na tvoje korisničko ime!
+    static QFile logFile("E:/IPTV/UTTILITIES/NOnAME/OgiXwork/VSS OgiXworkMakeM3u/OgiXworkMakeM3u_CPP/build/mac_debug.txt");
     if (!logFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
     qWarning() << "Neuspešno otvaranje log fajla!";
 }
